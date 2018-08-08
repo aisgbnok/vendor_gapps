@@ -80,14 +80,14 @@ fi
 
 LOWMEM=1572864
 MEM=`grep MemTotal /proc/meminfo | awk '{ print $2 }'`
-LOW_STORAGE=153600
-REALLY_LOW_STORAGE=92160
-STORAGE=`exec_util "df /system" | grep -v Filesystem | awk '{ print $4 }'`
+#LOW_STORAGE=153600
+#REALLY_LOW_STORAGE=92160
+#STORAGE=`exec_util "df /system" | grep -v Filesystem | awk '{ print $4 }'`
 
-if [ "$STORAGE" -lt "$REALLY_LOW_STORAGE" ]; then
-  ui_print "Not enough space for GApps! Aborting"
-  exit 1
-fi
+#if [ "$STORAGE" -lt "$REALLY_LOW_STORAGE" ]; then
+#  ui_print "Not enough space for GApps! Aborting"
+#  exit 1
+#fi
 
 ui_print "Extracting files"
 cd /tmp
@@ -95,7 +95,7 @@ unzip -o "$ZIP"
 exec_util "rm -rf META-INF"
 cd system
 
-if [ "$MEM" -lt "$LOWMEM" ] || [ "$STORAGE" -lt "$LOW_STORAGE" ]; then
+if [ "$MEM" -lt "$LOWMEM" ]; then #|| [ "$STORAGE" -lt "$LOW_STORAGE" ]; then
   ui_print "Low resource device detected, removing large extras"
   exec_util "rm -rf priv-app/AndroidMigratePrebuilt"
   exec_util "rm -rf priv-app/SetupWizard"
