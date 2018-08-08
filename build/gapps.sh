@@ -8,7 +8,7 @@
 #
 DATE=$(date -u +%Y%m%d_%H%M%S)
 TOP=$(realpath .)
-ANDROIDV=8.1.0
+ANDROIDV=9.0.0
 GARCH=$1
 OUT=$TOP/out
 BUILD=$TOP/build
