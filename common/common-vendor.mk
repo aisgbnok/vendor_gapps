@@ -19,6 +19,7 @@ PRODUCT_COPY_FILES += \
     vendor/gapps/common/proprietary/etc/permissions/com.google.android.dialer.support.xml:system/etc/permissions/com.google.android.dialer.support.xml \
     vendor/gapps/common/proprietary/etc/permissions/com.google.android.maps.xml:system/etc/permissions/com.google.android.maps.xml \
     vendor/gapps/common/proprietary/etc/permissions/privapp-permissions-google.xml:system/etc/permissions/privapp-permissions-google.xml \
+    vendor/gapps/common/proprietary/etc/sysconfig/google-hiddenapi-package-whitelist.xml:system/etc/sysconfig/google-hiddenapi-package-whitelist.xml \
     vendor/gapps/common/proprietary/etc/sysconfig/google.xml:system/etc/sysconfig/google.xml \
     vendor/gapps/common/proprietary/etc/sysconfig/google_build.xml:system/etc/sysconfig/google_build.xml
 

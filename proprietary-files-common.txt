@@ -17,5 +17,6 @@ etc/permissions/com.google.android.maps.xml
 etc/permissions/com.google.android.dialer.support.xml
 etc/permissions/privapp-permissions-google.xml
 
+etc/sysconfig/google-hiddenapi-package-whitelist.xml
 etc/sysconfig/google.xml
 etc/sysconfig/google_build.xml
