@@ -15,7 +15,7 @@ etc/default-permissions/default-permissions.xml
 
 etc/permissions/com.google.android.maps.xml
 etc/permissions/com.google.android.dialer.support.xml
-etc/permissions/privapp-permissions-google.xml
+etc/permissions/privapp-permissions-google.xml|c760089e9c23b2dab19606732a8cb525a781d878
 
 etc/sysconfig/google-hiddenapi-package-whitelist.xml
 etc/sysconfig/google.xml
