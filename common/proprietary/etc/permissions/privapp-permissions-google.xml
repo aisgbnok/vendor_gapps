@@ -117,6 +117,7 @@ It allows additional grants on top of privapp-permissions-platform.xml
     <privapp-permissions package="com.google.android.apps.pixelmigrate">
         <permission name="android.permission.BACKUP"/>
         <permission name="android.permission.MANAGE_USB"/>
+        <permission name="android.permission.MANAGE_USERS"/>
         <permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
     </privapp-permissions>
@@ -152,6 +153,7 @@ It allows additional grants on top of privapp-permissions-platform.xml
         <permission name="android.permission.MODIFY_PHONE_STATE"/>
         <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
         <permission name="android.permission.WRITE_APN_SETTINGS"/>
+        <permission name="com.android.permission.INSTALL_EXISTING_PACKAGES" />
     </privapp-permissions>
 
     <privapp-permissions package="com.google.android.carrierentitlement">
@@ -183,6 +185,7 @@ It allows additional grants on top of privapp-permissions-platform.xml
         <permission name="android.permission.CONTROL_INCALL_EXPERIENCE"/>
         <permission name="android.permission.GET_ACCOUNTS_PRIVILEGED"/>
         <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+        <permission name="android.permission.MODIFY_AUDIO_ROUTING"/>
         <permission name="android.permission.MODIFY_PHONE_STATE"/>
         <permission name="android.permission.REGISTER_CONNECTION_MANAGER"/>
         <permission name="android.permission.STATUS_BAR"/>
@@ -202,6 +205,7 @@ It allows additional grants on top of privapp-permissions-platform.xml
         <permission name="android.permission.REBOOT"/>
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
         <permission name="android.permission.WRITE_EMBEDDED_SUBSCRIPTIONS"/>
+        <permission name="com.android.permission.INSTALL_EXISTING_PACKAGES" />
         <permission name="com.android.permission.WRITE_EMBEDDED_SUBSCRIPTIONS"/>
     </privapp-permissions>
 
@@ -212,6 +216,7 @@ It allows additional grants on top of privapp-permissions-platform.xml
     <privapp-permissions package="com.google.android.gms">
         <permission name="android.permission.ACCESS_NETWORK_CONDITIONS"/>
         <permission name="android.permission.ACTIVITY_EMBEDDING"/>
+        <permission name="android.permission.ALLOCATE_AGGRESSIVE"/>
         <permission name="android.permission.BACKUP"/>
         <permission name="android.permission.BLUETOOTH_PRIVILEGED"/>
         <permission name="android.permission.CALL_PRIVILEGED"/>
@@ -278,6 +283,7 @@ It allows additional grants on top of privapp-permissions-platform.xml
         <permission name="android.permission.INTERACT_ACROSS_USERS"/>
         <permission name="android.permission.MANAGE_VOICE_KEYPHRASES"/>
         <permission name="android.permission.MEDIA_CONTENT_CONTROL"/>
+        <permission name="android.permission.PACKAGE_USAGE_STATS"/>
         <permission name="android.permission.REAL_GET_TASKS"/>
         <permission name="android.permission.SET_MEDIA_KEY_LISTENER"/>
         <permission name="android.permission.SET_VOLUME_KEY_LONG_PRESS_LISTENER"/>
@@ -424,6 +430,7 @@ It allows additional grants on top of privapp-permissions-platform.xml
 
     <privapp-permissions package="com.google.android.apps.internal.betterbug">
         <permission name="android.permission.DUMP"/>
+        <permission name="android.permission.INTERACT_ACROSS_USERS"/>
         <permission name="android.permission.PACKAGE_USAGE_STATS"/>
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
     </privapp-permissions>
@@ -457,6 +464,7 @@ It allows additional grants on top of privapp-permissions-platform.xml
 
     <privapp-permissions package="com.google.android.apps.wellbeing">
         <permission name="android.permission.CONTROL_DISPLAY_SATURATION"/>
+        <permission name="android.permission.MODIFY_PHONE_STATE"/>
         <permission name="android.permission.OBSERVE_APP_USAGE"/>
         <permission name="android.permission.PACKAGE_USAGE_STATS"/>
         <permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>

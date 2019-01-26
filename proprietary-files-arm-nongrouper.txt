@@ -1,1 +1,1 @@
--priv-app/Velvet/Velvet.apk;PRESIGNED|6ff0bf464004006754cd333c9d45f471c09b13ce
+-priv-app/Velvet/Velvet.apk;PRESIGNED|1bd57d7a32d77ec007ca7ad8032cca8d9038c555

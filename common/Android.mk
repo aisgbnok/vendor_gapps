@@ -1,4 +1,4 @@
-# Copyright (C) 2017-2018 The LineageOS Project
+# Copyright (C) 2017-2019 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -41,17 +41,6 @@ LOCAL_MODULE_SUFFIX := .apk
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := GoogleExtShared
-LOCAL_MODULE_OWNER := gapps
-LOCAL_SRC_FILES := proprietary/app/GoogleExtShared/GoogleExtShared.apk
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := APPS
-LOCAL_DEX_PREOPT := false
-LOCAL_MODULE_SUFFIX := .apk
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := PrebuiltExchange3Google
 LOCAL_MODULE_OWNER := gapps
 LOCAL_SRC_FILES := proprietary/app/PrebuiltExchange3Google/PrebuiltExchange3Google.apk
@@ -75,33 +64,9 @@ LOCAL_PRIVILEGED_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := GoogleExtServices
-LOCAL_MODULE_OWNER := gapps
-LOCAL_SRC_FILES := proprietary/priv-app/GoogleExtServices/GoogleExtServices.apk
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := APPS
-LOCAL_DEX_PREOPT := false
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_PRIVILEGED_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := GoogleFeedback
 LOCAL_MODULE_OWNER := gapps
 LOCAL_SRC_FILES := proprietary/priv-app/GoogleFeedback/GoogleFeedback.apk
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := APPS
-LOCAL_DEX_PREOPT := false
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_PRIVILEGED_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := GoogleOneTimeInitializer
-LOCAL_MODULE_OWNER := gapps
-LOCAL_SRC_FILES := proprietary/priv-app/GoogleOneTimeInitializer/GoogleOneTimeInitializer.apk
 LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := APPS
