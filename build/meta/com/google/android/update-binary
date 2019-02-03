@@ -83,7 +83,7 @@ fi
 LOWMEM=1572864
 MEM=`grep MemTotal /proc/meminfo | awk '{ print $2 }'`
 STORAGE=`exec_util "df /system" | grep -v Filesystem | awk '{ print $4 }'`
-STORAGE_BUFFER=25600
+STORAGE_BUFFER=10240
 
 ui_print "Extracting files"
 cd /tmp
