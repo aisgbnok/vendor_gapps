@@ -82,14 +82,8 @@ fi
 
 LOWMEM=1572864
 MEM=`grep MemTotal /proc/meminfo | awk '{ print $2 }'`
-#LOW_STORAGE=153600
-#REALLY_LOW_STORAGE=92160
-#STORAGE=`exec_util "df /system" | grep -v Filesystem | awk '{ print $4 }'`
-
-#if [ "$STORAGE" -lt "$REALLY_LOW_STORAGE" ]; then
-#  ui_print "Not enough space for GApps! Aborting"
-#  exit 1
-#fi
+STORAGE=`exec_util "df /system" | grep -v Filesystem | awk '{ print $4 }'`
+STORAGE_BUFFER=25600
 
 ui_print "Extracting files"
 cd /tmp
@@ -97,12 +91,21 @@ unzip -o "$ZIP"
 exec_util "rm -rf META-INF"
 cd system
 
-if [ "$MEM" -lt "$LOWMEM" ]; then #|| [ "$STORAGE" -lt "$LOW_STORAGE" ]; then
+NEEDED_STORAGE=`expr $(exec_util "du -s ." | awk '{ print $1 }') + $STORAGE_BUFFER`
+
+if [ "$MEM" -lt "$LOWMEM" ] || [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
   ui_print "Low resource device detected, removing large extras"
   exec_util "rm -rf priv-app/AndroidMigratePrebuilt"
   exec_util "rm -rf priv-app/SetupWizard"
   exec_util "rm -rf priv-app/Velvet"
+  NEEDED_STORAGE=`expr $(exec_util "du -s ." | awk '{ print $1 }') + $STORAGE_BUFFER`
+  if [ "$STORAGE" -lt "$REALLY_LOW_STORAGE" ]; then
+    ui_print "Not enough space for GApps! Aborting"
+    cd .. && exec_utl "rm -rf system"
+    exit 1
+  fi
 fi
+
 ui_print "Generating addon.d file"
 cat addon.d/addond_head > addon.d/30-gapps.sh
 for f in `exec_util "find . -type f"`; do
