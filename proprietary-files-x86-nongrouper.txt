@@ -1,1 +1,2 @@
 -priv-app/Velvet/Velvet.apk;PRESIGNED|cd13e9ea9d5b3337b8a22b9ea7939132458cbced
+priv-app/SetupWizard/lib/x86/libbarhopper.so|a09883b5010f162c5ec9262b4824578d945913b9
