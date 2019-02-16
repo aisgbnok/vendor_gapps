@@ -20,8 +20,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     PrebuiltGmsCore
 ifeq ($(TARGET_IS_GROUPER),)
+PRODUCT_COPY_FILES += \
+    vendor/gapps/arm/proprietary/app/MarkupGoogle/MarkupGoogle/lib/arm/libsketchology_native.so:system/app/MarkupGoogle/MarkupGoogle/lib/arm/libsketchology_native.so
 
 PRODUCT_PACKAGES += \
+    MarkupGoogle \
     Velvet
 endif
 
