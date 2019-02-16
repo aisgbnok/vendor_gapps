@@ -11,7 +11,7 @@
 -framework/com.google.android.maps.jar;PRESIGNED
 -framework/com.google.android.dialer.support.jar;PRESIGNED
 
-etc/default-permissions/default-permissions.xml
+etc/default-permissions/default-permissions.xml|70fde12d8283ff81dbe9ec3480259ccc9df0c227
 
 etc/permissions/com.google.android.maps.xml
 etc/permissions/com.google.android.dialer.support.xml
