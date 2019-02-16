@@ -93,6 +93,7 @@ NEEDED_STORAGE=`expr $(exec_util "du -s ." | awk '{ print $1 }') + $STORAGE_BUFF
 
 if [ "$MEM" -lt "$LOWMEM" ] || [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
   ui_print "Low resource device detected, removing large extras"
+  exec_util "rm -rf app/MarkupGoogle"
   exec_util "rm -rf priv-app/AndroidMigratePrebuilt"
   exec_util "rm -rf priv-app/SetupWizard"
   exec_util "rm -rf priv-app/Velvet"
