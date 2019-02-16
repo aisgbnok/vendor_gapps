@@ -97,9 +97,10 @@ if [ "$MEM" -lt "$LOWMEM" ] || [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
   exec_util "rm -rf priv-app/SetupWizard"
   exec_util "rm -rf priv-app/Velvet"
   NEEDED_STORAGE=`expr $(exec_util "du -s ." | awk '{ print $1 }') + $STORAGE_BUFFER`
-  if [ "$STORAGE" -lt "$REALLY_LOW_STORAGE" ]; then
+  if [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
     ui_print "Not enough space for GApps! Aborting"
-    cd .. && exec_utl "rm -rf system"
+    cd ..
+    exec_util "rm -rf system"
     exit 1
   fi
 fi
@@ -130,14 +131,15 @@ for dirs in $DIRS; do
     set_con system_file $f
   done
 done
+
 ui_print "Copying files"
 exec_util "cp --preserve=a -r ./* /system/"
 if [ -e priv-app/SetupWizard ] ; then
-    exec_util "rm -rf /system/priv-app/Provision/"
+    exec_util "rm -rf /system/priv-app/Provision"
 fi
 ui_print "Cleaning up files"
 cd ../
-exec_util "rm -rf system/"
+exec_util "rm -rf system"
 
 ui_print "Unmounting system partition"
 if umount -l /system; then
