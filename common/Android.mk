@@ -133,6 +133,17 @@ include $(BUILD_PREBUILT)
 
 ifeq ($(TARGET_IS_GROUPER),)
 include $(CLEAR_VARS)
+LOCAL_MODULE := MarkupGoogle
+LOCAL_MODULE_OWNER := gapps
+LOCAL_SRC_FILES := proprietary/app/MarkupGoogle/MarkupGoogle.apk
+LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := APPS
+LOCAL_DEX_PREOPT := false
+LOCAL_MODULE_SUFFIX := .apk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE := AndroidMigratePrebuilt
 LOCAL_MODULE_OWNER := gapps
 LOCAL_SRC_FILES := proprietary/priv-app/AndroidMigratePrebuilt/AndroidMigratePrebuilt.apk
