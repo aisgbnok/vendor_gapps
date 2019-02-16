@@ -1,4 +1,4 @@
-# Copyright (C) 2017-2019 The LineageOS Project
+# Copyright (C) 2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     PrebuiltGmsCore
 ifeq ($(TARGET_IS_GROUPER),)
-PRODUCT_COPY_FILES += \
-    vendor/gapps/arm/proprietary/priv-app/SetupWizard/lib/arm/libbarhopper.so:system/priv-app/SetupWizard/lib/arm/libbarhopper.so
 
 PRODUCT_PACKAGES += \
     Velvet
