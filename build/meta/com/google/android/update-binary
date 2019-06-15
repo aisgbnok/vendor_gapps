@@ -48,7 +48,7 @@ if [ "$SYSTEMASROOT" == "true" ]; then
     TARGETSYSTEM=/dev/block/bootdevice/by-name/system
   fi
   mkdir -p /system_root
-  if mount -o rw $TARGETSYSTEM /system_root && mount /system_root/system /system; then
+  if mount -o rw $TARGETSYSTEM /system_root && mount -o bind /system_root/system /system; then
     ui_print "/system mounted"
   else
     ui_print "Could not mount /system! Aborting"
