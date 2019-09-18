@@ -2,7 +2,7 @@
 
 **GApps for android devices**
 
-Build
+Build standalone zips
 -------------------
 
 You can compile your GApps package with GNU make
@@ -18,6 +18,11 @@ _make gapps_arm64_
 
 _make gapps_x86_
 - compile signed flashable GApps for x86
+
+Build inline with Android
+-------------------
+- Sync this repo to $GAPPS_PATH where $GAPPS_PATH is the path to this repo
+- Include $GAPPS_PATH/$ARCH/$ARCH-vendor.mk where $ARCH is arm, arm64, or x86 depending on the device's architecture
 
 Thanks and Credits
 -------------------
