@@ -21,8 +21,8 @@ _make gapps_x86_
 
 Build inline with Android
 -------------------
-- Sync this repo to $GAPPS_PATH where $GAPPS_PATH is the path to this repo
-- Include $GAPPS_PATH/$ARCH/$ARCH-vendor.mk where $ARCH is arm, arm64, or x86 depending on the device's architecture
+1. Sync this repo to $GAPPS_PATH where $GAPPS_PATH is the path to this repo
+2. Include $GAPPS_PATH/$ARCH/$ARCH-vendor.mk where $ARCH is arm, arm64, or x86 depending on the device's architecture
 
 Thanks and Credits
 -------------------
