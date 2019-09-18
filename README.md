@@ -46,5 +46,8 @@ luca020400
 mikeioannina
 - The name for MindTheGapps
 
+razorloves
+- Helping maintain this repo
+
 syphyr
 - Showing me how to repack libs in PrebuiltGmsCore
