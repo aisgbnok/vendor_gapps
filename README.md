@@ -76,7 +76,7 @@ luca020400
 mikeioannina
 - The name for MindTheGapps
 
-razorloves
+razorloves, raymanfx
 - Helping maintain this repo
 
 syphyr
