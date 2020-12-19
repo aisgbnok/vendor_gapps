@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017-2018 The LineageOS Project
+# Copyright (C) 2017-2021 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ export VENDOR=gapps
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 
-LINEAGE_ROOT="$MY_DIR"/../..
+ANDROID_ROOT="$MY_DIR/../.."
 
-HELPER="$LINEAGE_ROOT"/vendor/lineage/build/tools/extract_utils.sh
+HELPER="$ANDROID_ROOT/tools/extract-utils/extract_utils.sh"
 if [ ! -f "$HELPER" ]; then
     echo "Unable to find helper script at $HELPER"
     exit 1
@@ -42,7 +42,7 @@ if [ -z "$SRC" ]; then
 fi
 
 # Initialize the helper for common gapps
-setup_vendor "$GAPPS_COMMON" "$VENDOR" "$LINEAGE_ROOT"
+setup_vendor "$GAPPS_COMMON" "$VENDOR" "$ANDROID_ROOT"
 
 extract "$MY_DIR"/proprietary-files-common.txt "$SRC"
 extract "$MY_DIR"/proprietary-files-common-nongrouper.txt "$SRC"
