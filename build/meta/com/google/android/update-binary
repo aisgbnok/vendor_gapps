@@ -3,21 +3,17 @@
 OUTFD="/proc/self/fd/$2"
 ZIP=$3
 
-exec_util() {
-  LD_LIBRARY_PATH=$LD_PATH $UTILS $1
-}
-
 set_con() {
-  exec_util "chcon -h u:object_r:"$1":s0 $2"
-  exec_util "chcon u:object_r:"$1":s0 $2"
+  chcon -h u:object_r:"$1":s0 $2
+  chcon u:object_r:"$1":s0 $2
 }
 
 set_perm() {
-  exec_util "chmod $1 $2"
+  chmod $1 $2
 }
 
 set_owner() {
-  exec_util "chown $1:$2 $3"
+  chown $1:$2 $3
 }
 
 ui_print() {
@@ -25,129 +21,150 @@ ui_print() {
   echo "ui_print" > "$OUTFD";
 }
 
+cleanup() {
+  ui_print "Cleaning up files"
+  cd ../
+  rm -rf system
+
+  ui_print "Unmounting partitions"
+  umount -l "$SYSTEM_MNT"
+}
+
+get_block_for_mount_point() {
+  grep -v "^#" /etc/recovery.fstab | grep " $1 " | tail -n1 | tr -s ' ' | cut -d' ' -f1
+}
+
+find_block() {
+  local name="$1"
+  local fstab_entry=$(get_block_for_mount_point "/$name")
+  # P-SAR hacks
+  [ -z "$fstab_entry" ] && [ "$name" = "system" ] && fstab_entry=$(get_block_for_mount_point "/")
+  [ -z "$fstab_entry" ] && [ "$name" = "system" ] && fstab_entry=$(get_block_for_mount_point "/system_root")
+
+  local dev
+  if [ "$DYNAMIC_PARTITIONS" = "true" ]; then
+    if [ -n "$fstab_entry" ]; then
+      dev="${BLK_PATH}/${fstab_entry}${SLOT_SUFFIX}"
+    else
+      dev="${BLK_PATH}/${name}${SLOT_SUFFIX}"
+    fi
+  else
+    if [ -n "$fstab_entry" ]; then
+      dev="${fstab_entry}${SLOT_SUFFIX}"
+    else
+      dev="${BLK_PATH}/${name}${SLOT_SUFFIX}"
+    fi
+  fi
+
+  if [ -b "$dev" ]; then
+    echo "$dev"
+  fi
+}
+
 ui_print "**********************"
 ui_print "MindTheGapps installer"
 ui_print "**********************"
 
-SYSTEMASROOT=`getprop ro.build.system_root_image`
-
-ui_print "Mounting system partition"
+ui_print "Mounting partitions"
 
 # Ensure system is unmounted so mounting succeeds
-umount /system || true
+umount /system || umount /mnt/system || true
 
-if [ "$SYSTEMASROOT" == "true" ]; then
-  CURRENTSLOT=`getprop ro.boot.slot_suffix`
-  if [ ! -z "$CURRENTSLOT" ]; then
-    if [ "$CURRENTSLOT" == "_a" ]; then
-      TARGETSYSTEM=/dev/block/bootdevice/by-name/system_a
-    else
-      TARGETSYSTEM=/dev/block/bootdevice/by-name/system_b
-    fi
-  else
-    TARGETSYSTEM=/dev/block/bootdevice/by-name/system
-  fi
-  mkdir -p /system_root
-  if mount -o rw $TARGETSYSTEM /system_root && mount -o bind /system_root/system /system; then
-    ui_print "/system mounted"
-  else
-    ui_print "Could not mount /system! Aborting"
-    exit 1
-  fi
+# Find partitions
+DYNAMIC_PARTITIONS=`getprop ro.boot.dynamic_partitions`
+if [ "$DYNAMIC_PARTITIONS" = "true" ]; then
+    BLK_PATH="/dev/block/mapper"
 else
-  if mount /system; then
-    ui_print "/system mounted"
+    BLK_PATH=/dev/block/bootdevice/by-name
+fi
+
+CURRENTSLOT=`getprop ro.boot.slot_suffix`
+if [ ! -z "$CURRENTSLOT" ]; then
+  if [ "$CURRENTSLOT" == "_a" ]; then
+    SLOT_SUFFIX="_a"
   else
-    ui_print "Could not mount /system! Aborting"
-    exit 1
+    SLOT_SUFFIX="_b"
   fi
 fi
 
-if [ -f /system/bin/toybox ]; then
-  UTILS=/system/bin/toybox
-  LD_PATH=/system/lib
+SYSTEM_BLOCK=$(find_block "system")
+
+# Disable rw protection on dynamic partitions
+if [ "$DYNAMIC_PARTITIONS" = "true" ]; then
+  blockdev --setrw "$SYSTEM_BLOCK"
+fi
+
+# Mount and define SYSTEM_OUT
+SYSTEM_MNT=/mnt/system
+mkdir -p "$SYSTEM_MNT" || true
+if mount -o rw "$SYSTEM_BLOCK" "$SYSTEM_MNT"; then
+ui_print "$SYSTEM_MNT mounted"
 else
-  ui_print "Could not find /system/bin/toybox! Aborting"
-  exit 1
+ui_print "Could not mount $SYSTEM_MNT! Aborting"
+exit 1
 fi
-
-DIRS="addon.d app priv-app framework etc lib"
-
-if [ -d /system/lib64 ]; then
-  DIRS="$DIRS lib64"
-  LD_PATH=/system/lib64
-fi
+SYSTEM_OUT="${SYSTEM_MNT}/system"
 
 LOWMEM=1572864
 MEM=`grep MemTotal /proc/meminfo | awk '{ print $2 }'`
-STORAGE=`exec_util "df /system" | grep -v Filesystem | awk '{ print $4 }'`
+STORAGE=`df $SYSTEM_MNT | grep -v Filesystem | awk '{ print $4 }'`
 STORAGE_BUFFER=10240
 
 ui_print "Extracting files"
 cd /tmp
 unzip -o "$ZIP"
-exec_util "rm -rf META-INF"
+rm -rf META-INF
 cd system
 
-NEEDED_STORAGE=`expr $(exec_util "du -s ." | awk '{ print $1 }') + $STORAGE_BUFFER`
+NEEDED_STORAGE=`expr $(du -s . | awk '{ print $1 }') + $STORAGE_BUFFER`
 
 if [ "$MEM" -lt "$LOWMEM" ] || [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
   ui_print "Low resource device detected, removing large extras"
-  exec_util "rm -rf app/MarkupGoogle"
-  exec_util "rm -rf priv-app/AndroidMigratePrebuilt"
-  exec_util "rm -rf priv-app/SetupWizard"
-  exec_util "rm -rf priv-app/Velvet"
-  NEEDED_STORAGE=`expr $(exec_util "du -s ." | awk '{ print $1 }') + $STORAGE_BUFFER`
+  rm -rf app/MarkupGoogle
+  rm -rf priv-app/AndroidMigratePrebuilt
+  rm -rf priv-app/SetupWizard
+  rm -rf priv-app/Velvet
+  NEEDED_STORAGE=`expr $(du -s . | awk '{ print $1 }') + $STORAGE_BUFFER`
   if [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
     ui_print "Not enough space for GApps! Aborting"
     cd ..
-    exec_util "rm -rf system"
+    rm -rf system
     exit 1
   fi
 fi
 
 ui_print "Generating addon.d file"
 cat addon.d/addond_head > addon.d/30-gapps.sh
-for f in `exec_util "find . -type f"`; do
+for f in `find . -type f`; do
   line=$(echo "$f" | sed 's/\.\///')
   echo "$line" >> addon.d/30-gapps.sh
 done
 cat addon.d/addond_tail >> addon.d/30-gapps.sh
 rm addon.d/addond_head addon.d/addond_tail
+
 ui_print "Preparing files for copying"
-for dirs in $DIRS; do
-  set_perm 0755 $dir
-  for d in `exec_util "find ./$dir -type d"`; do
-    set_perm 0755 $d
-    set_owner root root $d
-  done
-  for f in `exec_util "find ./$dir -type f"`; do
-    type=$(echo "$f" | sed 's/.*\.//')
-    if [ "$type" == "sh" ] || [ "$type" == "$f" ]; then
-      set_perm 0755 $f
-    else
-      set_perm 0644 $f
-    fi
-    set_owner root root $f
-    set_con system_file $f
-  done
+for d in `find . -mindepth 1 -type d -type d`; do
+  set_perm 0755 $d
+  set_owner root root $d
+done
+for f in `find . -type f`; do
+  type=$(echo "$f" | sed 's/.*\.//')
+  if [ "$type" == "sh" ] || [ "$type" == "$f" ]; then
+    set_perm 0755 $f
+  else
+    set_perm 0644 $f
+  fi
+  set_owner root root $f
+  set_con system_file $f
 done
 
 ui_print "Copying files"
-exec_util "cp --preserve=a -r ./* /system/"
+cp --preserve=a -r ./* "${SYSTEM_OUT}/"
 if [ -e priv-app/SetupWizard ] ; then
-    exec_util "rm -rf /system/priv-app/Provision"
+  rm -rf "${SYSTEM_OUT}/priv-app/Provision"
 fi
-ui_print "Cleaning up files"
-cd ../
-exec_util "rm -rf system"
 
-ui_print "Unmounting system partition"
-if umount -l /system; then
-  if [ "$SYSTEMASROOT" == "true" ]; then
-    umount -l /system_root
-  fi
-fi
+cleanup
 
 ui_print "Done!"
 exit 0
