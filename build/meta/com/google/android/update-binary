@@ -146,7 +146,7 @@ fi
 
 ui_print "Generating addon.d file"
 cat addon.d/addond_head > addon.d/30-gapps.sh
-for f in `find . -type f`; do
+for f in `find . ! -path "./addon.d/*" -type f`; do
   line=$(echo "$f" | sed 's/\.\///')
   echo "$line" >> addon.d/30-gapps.sh
 done
