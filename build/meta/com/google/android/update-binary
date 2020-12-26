@@ -30,6 +30,12 @@ cleanup() {
   umount -l "$SYSTEM_MNT"
 }
 
+error_no_space() {
+  ui_print "Not enough space for GApps! Aborting"
+  cleanup
+  exit 1
+}
+
 get_block_for_mount_point() {
   grep -v "^#" /etc/recovery.fstab | grep " $1 " | tail -n1 | tr -s ' ' | cut -d' ' -f1
 }
@@ -59,6 +65,20 @@ find_block() {
   if [ -b "$dev" ]; then
     echo "$dev"
   fi
+}
+
+compute_apps_size() {
+  NEEDED_STORAGE_SYSTEM=$(expr $(du -cs `find -maxdepth 1 -mindepth 1` | tail -n1 | cut -f1) + $STORAGE_BUFFER)
+  RECLAIMABLE_STORAGE_SYSTEM=$(find . -type f | sed "s|^./|$SYSTEM_OUT/|" | xargs ls -d 2>/dev/null | xargs du -cs PLACEHOLDER 2>/dev/null | tail -n1 |  cut -f1)
+  NEEDED_STORAGE_SYSTEM=$(expr $NEEDED_STORAGE_SYSTEM - $RECLAIMABLE_STORAGE_SYSTEM)
+}
+
+remove_big_optional_apps() {
+  ui_print "Low resource device detected, removing large extras"
+  rm -rf app/MarkupGoogle
+  rm -rf priv-app/AndroidMigratePrebuilt
+  rm -rf priv-app/SetupWizardPrebuilt
+  rm -rf priv-app/Velvet
 }
 
 ui_print "**********************"
@@ -105,9 +125,8 @@ exit 1
 fi
 SYSTEM_OUT="${SYSTEM_MNT}/system"
 
-LOWMEM=1572864
-MEM=`grep MemTotal /proc/meminfo | awk '{ print $2 }'`
-STORAGE=`df $SYSTEM_MNT | grep -v Filesystem | awk '{ print $4 }'`
+# Compute storage requirements
+SYSTEM_STORAGE=`df $SYSTEM_MNT | tail -1 | tr -s ' ' | cut -d ' ' -f4`
 STORAGE_BUFFER=10240
 
 ui_print "Extracting files"
@@ -115,21 +134,13 @@ cd /tmp
 unzip -o "$ZIP"
 rm -rf META-INF
 cd system
+compute_apps_size
 
-NEEDED_STORAGE=`expr $(du -s . | awk '{ print $1 }') + $STORAGE_BUFFER`
-
-if [ "$MEM" -lt "$LOWMEM" ] || [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
-  ui_print "Low resource device detected, removing large extras"
-  rm -rf app/MarkupGoogle
-  rm -rf priv-app/AndroidMigratePrebuilt
-  rm -rf priv-app/SetupWizardPrebuilt
-  rm -rf priv-app/Velvet
-  NEEDED_STORAGE=`expr $(du -s . | awk '{ print $1 }') + $STORAGE_BUFFER`
-  if [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
-    ui_print "Not enough space for GApps! Aborting"
-    cd ..
-    rm -rf system
-    exit 1
+if [ "$SYSTEM_STORAGE" -lt "$NEEDED_STORAGE_SYSTEM" ]; then
+  remove_big_optional_apps
+  compute_apps_size
+  if [ "$SYSTEM_STORAGE" -lt "$NEEDED_STORAGE_SYSTEM" ]; then
+    error_no_space
   fi
 fi
 
