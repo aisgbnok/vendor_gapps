@@ -25,6 +25,8 @@ cleanup() {
   ui_print "Cleaning up files"
   cd ../
   rm -rf system
+  rm -rf bin
+  rm toybox
 
   ui_print "Unmounting partitions"
   umount -l "$SYSTEM_MNT"
@@ -102,6 +104,24 @@ remove_big_optional_apps() {
 ui_print "**********************"
 ui_print "MindTheGapps installer"
 ui_print "**********************"
+
+ui_print "Extracting files"
+TMP=/tmp
+cd "$TMP"
+unzip -o "$ZIP"
+rm -rf META-INF
+
+ui_print "Setting up environment"
+TOYBOX="${TMP}/toybox"
+chmod +x "$TOYBOX"
+
+TOYS_PATH="${TMP}/bin"
+rm -rf "$TOYS_PATH";
+$TOYBOX install -d "$TOYS_PATH"
+for toy in $($TOYBOX); do
+  $TOYBOX ln -sf "$TOYBOX" "${TOYS_PATH}/${toy}"
+done
+PATH="${TOYS_PATH}:${PATH}"
 
 ui_print "Mounting partitions"
 
@@ -182,10 +202,6 @@ if [ -n "$SYSTEM_EXT_BLOCK" ]; then
 fi
 STORAGE_BUFFER=10240
 
-ui_print "Extracting files"
-cd /tmp
-unzip -o "$ZIP"
-rm -rf META-INF
 cd system
 compute_apps_size
 
