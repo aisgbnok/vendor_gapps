@@ -45,6 +45,7 @@ function create() {
     echo "Build directories are now ready" >> $GLOG
     echo "Getting prebuilts..."
     echo "Copying stuff" >> $GLOG
+    cp $TOP/toybox-$GARCH $OUT/$GARCH/toybox >> $GLOG
     cp -r $PREBUILT/* $OUT/$GARCH/system >> $GLOG
     cp -r $COMMON/* $OUT/$GARCH/system >> $GLOG
     echo "Generating addon.d script" >> $GLOG
