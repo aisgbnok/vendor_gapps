@@ -93,10 +93,10 @@ NEEDED_STORAGE=`expr $(exec_util "du -s ." | awk '{ print $1 }') + $STORAGE_BUFF
 
 if [ "$MEM" -lt "$LOWMEM" ] || [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
   ui_print "Low resource device detected, removing large extras"
-  exec_util "rm -rf app/MarkupGoogle"
-  exec_util "rm -rf priv-app/AndroidMigratePrebuilt"
-  exec_util "rm -rf priv-app/SetupWizard"
-  exec_util "rm -rf priv-app/Velvet"
+  exec_util "rm -rf product/app/MarkupGoogle"
+  exec_util "rm -rf product/priv-app/AndroidMigratePrebuilt"
+  exec_util "rm -rf product/priv-app/SetupWizardPrebuilt"
+  exec_util "rm -rf product/priv-app/Velvet"
   NEEDED_STORAGE=`expr $(exec_util "du -s ." | awk '{ print $1 }') + $STORAGE_BUFFER`
   if [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
     ui_print "Not enough space for GApps! Aborting"
@@ -136,7 +136,7 @@ done
 ui_print "Copying files"
 exec_util "cp --preserve=a -r ./* /system/"
 if [ -e priv-app/SetupWizard ] ; then
-    exec_util "rm -rf /system/priv-app/Provision"
+    exec_util "rm -rf /system/system_ext/priv-app/Provision"
 fi
 ui_print "Cleaning up files"
 cd ../
