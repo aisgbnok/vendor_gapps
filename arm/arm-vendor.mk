@@ -29,6 +29,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     MarkupGoogle \
+    SetupWizardPrebuilt \
     Velvet
 endif
 
