@@ -4,7 +4,7 @@
 
 -product/priv-app/AndroidAutoStubPrebuilt/AndroidAutoStubPrebuilt.apk;PRESIGNED
 -product/priv-app/PartnerSetupPrebuilt/PartnerSetupPrebuilt.apk;PRESIGNED
--product/priv-app/Phonesky/Phonesky.apk;PRESIGNED
+-product/priv-app/Phonesky/Phonesky.apk;PRESIGNED|da9f9699160f9499d127e0d995ea2ce9f4e51994
 
 -product/framework/com.google.android.dialer.support.jar;PRESIGNED
 
