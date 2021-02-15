@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017-2018 The LineageOS Project
+# Copyright (C) 2017-2021 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,18 +18,16 @@
 
 set -e
 
-export INITIAL_COPYRIGHT_YEAR=2017
-
-export GAPPS_COMMON=common
+export DEVICE_COMMON=common
 export VENDOR=gapps
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 
-LINEAGE_ROOT="$MY_DIR"/../..
+ANDROID_ROOT="$MY_DIR/../.."
 
-HELPER="$LINEAGE_ROOT"/vendor/lineage/build/tools/extract_utils.sh
+HELPER="$ANDROID_ROOT/tools/extract-utils/extract_utils.sh"
 if [ ! -f "$HELPER" ]; then
     echo "Unable to find helper script at $HELPER"
     exit 1
@@ -37,7 +35,7 @@ fi
 . "$HELPER"
 
 # Initialize the helper for common gapps
-setup_vendor "$GAPPS_COMMON" "$VENDOR" "$LINEAGE_ROOT" true
+setup_vendor "$DEVICE_COMMON" "$VENDOR" "$ANDROID_ROOT" true
 
 # Copyright headers
 write_headers "arm arm64 x86"
@@ -46,40 +44,38 @@ write_headers "arm arm64 x86"
 write_makefiles "$MY_DIR"/proprietary-files-common.txt
 
 # Gapps that are too large for grouper
+printf "\n" >> "$PRODUCTMK"
 echo "ifeq (\$(TARGET_IS_GROUPER),)" >> "$PRODUCTMK"
-echo "ifeq (\$(TARGET_IS_GROUPER),)" >> "$ANDROIDMK"
 write_makefiles "$MY_DIR"/proprietary-files-common-nongrouper.txt
 echo "endif" >> "$PRODUCTMK"
-echo "endif" >> "$ANDROIDMK"
 
 sed -i 's/TARGET_DEVICE/TARGET_ARCH/g' "$ANDROIDMK"
-
-# Make Google SuW override Provision
-sed -i 's/\(SetupWizardPrebuilt.apk\)/\1\nLOCAL_OVERRIDES_PACKAGES := Provision/' "$ANDROIDMK"
 
 # We are done with common
 write_footers
 
-for TARGET in arm arm64 x86; do
+for DEVICE in arm arm64 x86; do
 
 # Reinitialize the helper for target gapps
-setup_vendor "$TARGET" "$VENDOR" "$LINEAGE_ROOT" true
+setup_vendor "$DEVICE" "$VENDOR" "$ANDROID_ROOT"
 
 # Copyright headers and guards
-write_headers "$TARGET"
+write_headers "$DEVICE"
 
-write_makefiles "$MY_DIR"/proprietary-files-$TARGET.txt
+write_makefiles "$MY_DIR"/proprietary-files-$DEVICE.txt
 
 # Gapps that are too large for grouper
+printf "\n" >> "$PRODUCTMK"
 echo "ifeq (\$(TARGET_IS_GROUPER),)" >> "$PRODUCTMK"
-echo "ifeq (\$(TARGET_IS_GROUPER),)" >> "$ANDROIDMK"
-write_makefiles "$MY_DIR"/proprietary-files-$TARGET-nongrouper.txt
+write_makefiles "$MY_DIR"/proprietary-files-$DEVICE-nongrouper.txt
 echo "endif" >> "$PRODUCTMK"
-echo "endif" >> "$ANDROIDMK"
 
 printf '\n%s\n' "\$(call inherit-product, vendor/gapps/common/common-vendor.mk)" >> "$PRODUCTMK"
 
 sed -i 's/TARGET_DEVICE/TARGET_ARCH/g' "$ANDROIDMK"
+
+# Make Google SuW override Provision
+sed -i 's/\(SetupWizardPrebuilt.apk",\)/\1\n\toverrides: ["Provision"],/' "$ANDROIDBP"
 
 # We are done with target
 write_footers

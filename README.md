@@ -52,6 +52,9 @@ libjni_latinimegoogle.so
 Thanks and Credits
 -------------------
 
+aleasto
+- Install scripts for 11 with dedicated partitions support
+
 cdesai
 - Reminding me that /proc/meminfo is a thing
 

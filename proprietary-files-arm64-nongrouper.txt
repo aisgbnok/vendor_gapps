@@ -1,3 +1,4 @@
--app/MarkupGoogle/MarkupGoogle.apk;PRESIGNED|012bf4c0622d9d0aa4361a62e7ce07a1eb056b8f
--priv-app/Velvet/Velvet.apk;PRESIGNED|314043242c4253b61d9d4fcf656489d3fa0265be
-app/MarkupGoogle/lib/arm64/libsketchology_native.so|71898873b8d07af8f0589ac6faf64770300b2e21
+-product/app/MarkupGoogle/MarkupGoogle.apk;PRESIGNED|012bf4c0622d9d0aa4361a62e7ce07a1eb056b8f
+-product/priv-app/SetupWizardPrebuilt/SetupWizardPrebuilt.apk;PRESIGNED|074346bfb2128d64049b373e447837a300a4054f
+-product/priv-app/Velvet/Velvet.apk;PRESIGNED|d6321f135f7f0f503d37bb1ee3f8c1dbae6d2b9c
+product/app/MarkupGoogle/lib/arm64/libsketchology_native.so|5c55b4d32beeeca04b4e9f4ce1a2cd3e15a32c8c
