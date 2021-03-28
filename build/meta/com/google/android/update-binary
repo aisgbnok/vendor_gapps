@@ -95,7 +95,9 @@ compute_apps_size() {
 
 remove_big_optional_apps() {
   ui_print "Low resource device detected, removing large extras"
+  rm -rf product/app/GoogleTTS
   rm -rf product/app/MarkupGoogle
+  rm -rf product/app/talkback
   rm -rf product/priv-app/AndroidMigratePrebuilt
   rm -rf product/priv-app/SetupWizardPrebuilt
   rm -rf product/priv-app/Velvet

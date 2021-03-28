@@ -18,9 +18,31 @@ android_app_import {
 }
 
 android_app_import {
+	name: "GoogleTTS",
+	owner: "gapps",
+	apk: "proprietary/product/app/GoogleTTS/GoogleTTS.apk",
+	presigned: true,
+	dex_preopt: {
+		enabled: false,
+	},
+	product_specific: true,
+}
+
+android_app_import {
 	name: "MarkupGoogle",
 	owner: "gapps",
 	apk: "proprietary/product/app/MarkupGoogle/MarkupGoogle.apk",
+	presigned: true,
+	dex_preopt: {
+		enabled: false,
+	},
+	product_specific: true,
+}
+
+android_app_import {
+	name: "talkback",
+	owner: "gapps",
+	apk: "proprietary/product/app/talkback/talkback.apk",
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
