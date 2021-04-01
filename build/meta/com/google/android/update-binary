@@ -175,6 +175,16 @@ exit 1
 fi
 SYSTEM_OUT="${SYSTEM_MNT}/system"
 
+# Ignore {product,system_ext} block devices in case they are symlinks
+# This is common on devices where maintainers have chosen not to use
+# real partitions because of their size being too small to be useful
+if [ -L "${SYSTEM_MNT}/product" ]; then
+PRODUCT_BLOCK=""
+fi
+if [ -L "${SYSTEM_MNT}/system_ext" ]; then
+SYSTEM_EXT_BLOCK=""
+fi
+
 if [ -n "$PRODUCT_BLOCK" ]; then
   mkdir /product || true
   if mount -o rw "$PRODUCT_BLOCK" /product; then
