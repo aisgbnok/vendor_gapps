@@ -10,7 +10,8 @@ PRODUCT_COPY_FILES += \
     vendor/gapps/arm64/proprietary/product/lib64/libjni_latinimegoogle.so:$(TARGET_COPY_OUT_PRODUCT)/lib64/libjni_latinimegoogle.so
 
 PRODUCT_PACKAGES += \
-    PrebuiltGmsCore
+    GmsCore \
+    Phonesky
 
 ifeq ($(TARGET_IS_GROUPER),)
 PRODUCT_COPY_FILES += \
@@ -20,7 +21,7 @@ PRODUCT_PACKAGES += \
     GoogleTTS \
     MarkupGoogle \
     talkback \
-    SetupWizardPrebuilt \
+    SetupWizard \
     Velvet
 endif
 

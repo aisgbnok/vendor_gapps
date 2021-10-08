@@ -9,12 +9,13 @@ PRODUCT_COPY_FILES += \
     vendor/gapps/x86/proprietary/product/lib/libjni_latinimegoogle.so:$(TARGET_COPY_OUT_PRODUCT)/lib/libjni_latinimegoogle.so
 
 PRODUCT_PACKAGES += \
-    PrebuiltGmsCore
+    GmsCore \
+    Phonesky
 
 ifeq ($(TARGET_IS_GROUPER),)
 
 PRODUCT_PACKAGES += \
-    SetupWizardPrebuilt \
+    SetupWizard \
     Velvet
 endif
 
