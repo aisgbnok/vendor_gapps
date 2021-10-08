@@ -99,7 +99,7 @@ remove_big_optional_apps() {
   rm -rf product/app/MarkupGoogle
   rm -rf product/app/talkback
   rm -rf product/priv-app/AndroidMigratePrebuilt
-  rm -rf product/priv-app/SetupWizardPrebuilt
+  rm -rf product/priv-app/SetupWizard
   rm -rf product/priv-app/Velvet
 }
 
