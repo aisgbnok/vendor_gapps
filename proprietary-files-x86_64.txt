@@ -1,0 +1,4 @@
+-product/priv-app/GmsCore/GmsCore.apk;PRESIGNED|3e73cf0f39fc502f1af48e327c335ff62f7f663c
+-product/priv-app/Phonesky/Phonesky.apk;PRESIGNED|71fbadef425a5dcbda3d2c2264d0b28cabbeb2f9
+product/lib/libjni_latinimegoogle.so|5e1e142c1ff8dcd97c9574f90d613c878bde0e79
+product/lib64/libjni_latinimegoogle.so|5e1e142c1ff8dcd97c9574f90d613c878bde0e79
