@@ -33,6 +33,7 @@ android_app_import {
 	name: "SetupWizard",
 	owner: "gapps",
 	apk: "proprietary/product/priv-app/SetupWizard/SetupWizard.apk",
+	overrides: ["Provision"],
 	presigned: true,
 	dex_preopt: {
 		enabled: false,

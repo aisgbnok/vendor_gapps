@@ -75,7 +75,7 @@ printf '\n%s\n' "\$(call inherit-product, vendor/gapps/common/common-vendor.mk)"
 sed -i 's/TARGET_DEVICE/TARGET_ARCH/g' "$ANDROIDMK"
 
 # Make Google SuW override Provision
-sed -i 's/\(SetupWizardPrebuilt.apk",\)/\1\n\toverrides: ["Provision"],/' "$ANDROIDBP"
+sed -i 's/\(SetupWizard.apk",\)/\1\n\toverrides: ["Provision"],/' "$ANDROIDBP"
 
 # We are done with target
 write_footers
