@@ -33,7 +33,7 @@ os.chdir(sys.path[0])
 
 # Definitions for privileged permissions
 ANDROID_MANIFEST_XML = \
-        'https://raw.githubusercontent.com/LineageOS/android_frameworks_base/lineage-19.0/core/res/AndroidManifest.xml'
+    'https://raw.githubusercontent.com/LineageOS/android_frameworks_base/lineage-19.0/core/res/AndroidManifest.xml'
 ANDROID_XML_NS = '{http://schemas.android.com/apk/res/android}'
 privileged_permissions = set()
 privileged_permission_mask = {'privileged', 'signature'}
@@ -47,7 +47,8 @@ for perm in root.findall('permission'):
     # Get name of permission
     name = perm.get('{}name'.format(ANDROID_XML_NS))
     # Get the protection levels on the permission
-    levels = set(perm.get('{}protectionLevel'.format(ANDROID_XML_NS)).split('|'))
+    levels = set(
+        perm.get('{}protectionLevel'.format(ANDROID_XML_NS)).split('|'))
     # Check if the protections include signature and privileged
     levels_masked = levels & privileged_permission_mask
     if len(levels_masked) == len(privileged_permission_mask):
@@ -86,7 +87,7 @@ AAPT_CMD = ['aapt', 'd', 'permissions']
 for apk in glob(GLOB_APK_STR):
     # Run 'aapt d permissions' on APK
     aapt_output = subprocess.check_output(AAPT_CMD + [apk],
-            stderr=subprocess.STDOUT).decode(encoding='UTF-8')
+                                          stderr=subprocess.STDOUT).decode(encoding='UTF-8')
     lines = aapt_output.split('\n')
     # Extract package name from the output
     # Output looks like:
@@ -123,7 +124,7 @@ for package in privapp_permissions_dict:
     if len(perm_diff) > 0:
         rc = errno.EPERM
         sys.stderr.write("Package {} is missing these permissions:\n"
-                .format(package))
+                         .format(package))
         for perm in perm_diff:
             sys.stderr.write(" - {}\n".format(perm))
 
