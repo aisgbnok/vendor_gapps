@@ -2,4 +2,4 @@ image: registry.gitlab.com/mindthegapps/vendor_gapps:latest
 
 verify:
   script:
-    - python cicd/verify-permissions.py
+    - ./cicd/verify-permissions.py
