@@ -14,12 +14,16 @@
 import errno
 from glob import glob
 import os
-import re
 import subprocess
 import sys
 from xml.etree import ElementTree
 
 # Get external packages
+try:
+    from parse import parse
+except ImportError:
+    print('Please install the "parse" package via pip3.')
+    exit(errno.ENOPKG)
 try:
     import requests
 except ImportError:
@@ -92,8 +96,7 @@ for apk in glob(GLOB_APK_STR):
     # Extract package name from the output
     # Output looks like:
     #     package: my.package.name
-    matches = re.search(r'package: ([\S]+)', lines[0])
-    package_name = matches.group(1)
+    package_name = parse('package: {}', lines[0])[0]
     # Create empty entry if package is not in dic
     if package_name not in privapp_permissions_dict:
         privapp_permissions_dict[package_name] = (set(), set())
@@ -101,13 +104,11 @@ for apk in glob(GLOB_APK_STR):
     # Relevant output looks like:
     #     uses-permission: name='permission'
     for line in lines[1:]:
-        if line.startswith('uses-permission'):
-            # Extract permission name and add it to the dictionary if it's
-            # one of the privileged permissions we extracted earlier
-            matches = re.search(r"uses-permission.*: name='([\S]+)'", line)
-            perm_name = matches.group(1)
-            if perm_name in privileged_permissions:
-                privapp_permissions_dict[package_name][1].add(perm_name)
+        # Extract permission name and add it to the dictionary if it's
+        # one of the privileged permissions we extracted earlier
+        if perm_name := parse('uses-permission: name=\'{}\'', line):
+            if perm_name[0] in privileged_permissions:
+                privapp_permissions_dict[package_name][1].add(perm_name[0])
 
 # Keep track of exit code
 rc = 0
