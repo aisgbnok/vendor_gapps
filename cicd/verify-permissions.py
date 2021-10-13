@@ -13,6 +13,7 @@
 
 import errno
 from glob import glob
+import os
 import re
 import subprocess
 import sys
@@ -24,6 +25,11 @@ try:
 except ImportError:
     print('Please install the "requests" package via pip3.')
     exit(errno.ENOPKG)
+
+# Change working directory to the location of this script
+# This fixes relative path references when calling this script from
+# outside of the directory containing it
+os.chdir(sys.path[0])
 
 # Definitions for privileged permissions
 ANDROID_MANIFEST_XML = \
