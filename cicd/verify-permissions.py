@@ -13,6 +13,7 @@
 
 import errno
 from glob import glob
+import re
 import subprocess
 import sys
 from xml.etree import ElementTree
@@ -84,7 +85,8 @@ for apk in glob(GLOB_APK_STR):
     # Extract package name from the output
     # Output looks like:
     #     package: my.package.name
-    package_name = lines[0].replace('package: ', '')
+    matches = re.search(r'package: ([\S]+)', lines[0])
+    package_name = matches.group(1)
     # Create empty entry if package is not in dic
     if package_name not in privapp_permissions_dict:
         privapp_permissions_dict[package_name] = (set(), set())
@@ -95,8 +97,8 @@ for apk in glob(GLOB_APK_STR):
         if line.startswith('uses-permission'):
             # Extract permission name and add it to the dictionary if it's
             # one of the privileged permissions we extracted earlier
-            perm_name = line.replace('uses-permission: name=', '') \
-                .replace('\'', '')
+            matches = re.search(r"uses-permission.*: name='([\S]+)'", line)
+            perm_name = matches.group(1)
             if perm_name in privileged_permissions:
                 privapp_permissions_dict[package_name][1].add(perm_name)
 
