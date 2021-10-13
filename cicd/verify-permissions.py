@@ -45,10 +45,10 @@ req = requests.get(ANDROID_MANIFEST_XML)
 root = ElementTree.fromstring(req.text)
 for perm in root.findall('permission'):
     # Get name of permission
-    name = perm.get('{}name'.format(ANDROID_XML_NS))
+    name = perm.get(f'{ANDROID_XML_NS}name')
     # Get the protection levels on the permission
     levels = set(
-        perm.get('{}protectionLevel'.format(ANDROID_XML_NS)).split('|'))
+        perm.get(f'{ANDROID_XML_NS}protectionLevel').split('|'))
     # Check if the protections include signature and privileged
     levels_masked = levels & privileged_permission_mask
     if len(levels_masked) == len(privileged_permission_mask):
@@ -123,10 +123,9 @@ for package in privapp_permissions_dict:
     # If any permissions are left, set exit code to EPERM and print output
     if len(perm_diff) > 0:
         rc = errno.EPERM
-        sys.stderr.write("Package {} is missing these permissions:\n"
-                         .format(package))
+        sys.stderr.write(f"Package {package} is missing these permissions:\n")
         for perm in perm_diff:
-            sys.stderr.write(" - {}\n".format(perm))
+            sys.stderr.write(f" - {perm}\n")
 
 # Exit program
 exit(rc)
