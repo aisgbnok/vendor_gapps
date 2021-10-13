@@ -94,9 +94,9 @@ dex_import {
 }
 
 android_app_import {
-	name: "AndroidMigratePrebuilt",
+	name: "GoogleRestore",
 	owner: "gapps",
-	apk: "proprietary/product/priv-app/AndroidMigratePrebuilt/AndroidMigratePrebuilt.apk",
+	apk: "proprietary/product/priv-app/GoogleRestore/GoogleRestore.apk",
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
