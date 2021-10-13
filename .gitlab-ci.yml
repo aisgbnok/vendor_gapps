@@ -1,0 +1,16 @@
+image: python:latest
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+
+before_script:
+  - python -V  # Print out python version for debugging
+
+verify:
+  script:
+    - pip install requests
+    - python cicd/verify-permissions.py
