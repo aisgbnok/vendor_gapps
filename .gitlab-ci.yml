@@ -9,8 +9,8 @@ cache:
 
 before_script:
   - python -V  # Print out python version for debugging
+  - pip install requests
 
 verify:
   script:
-    - pip install requests
     - python cicd/verify-permissions.py
