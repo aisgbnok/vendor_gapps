@@ -50,7 +50,7 @@ for perm in root.findall('permission'):
     levels = set(perm.get('{}protectionLevel'.format(ANDROID_XML_NS)).split('|'))
     # Check if the protections include signature and privileged
     levels_masked = levels & privileged_permission_mask
-    if len(levels_masked) > 0:
+    if len(levels_masked) >= len(privileged_permission_mask):
         privileged_permissions.add(name)
 
 # Definitions for privapp-permissions
