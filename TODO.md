@@ -5,4 +5,3 @@
 - Update sigma gapps from a proper device release
 - Test/fix flashing zip on sigma ROMs
 - Test/fix gapps issues on sigma ROMs
-- CI/CD for privapp-permissions

@@ -67,11 +67,14 @@ ciwrl
 gmrt
 - Initial list for gapps
 
+flex1911, raymanfx, deadman96385, jrior001, haggertk, arco
+- Thorough testing
+
 harryyoud
 - Thorough testing and Jenkins setup
 
-flex1911, raymanfx, deadman96385, jrior001, haggertk, arco
-- Thorough testing
+haggertk
+- Suggesting CI integration of privapp-permissions
 
 jrizzoli
 - Initial build scripts and build system
@@ -79,10 +82,13 @@ jrizzoli
 luca020400
 - Fixing my makefiles
 
+LuK1337
+- Setting up custom Docker image for CI, improving scripts, thorough testing
+
 mikeioannina
 - The name for MindTheGapps
 
-razorloves, raymanfx
+aleasto, razorloves, raymanfx
 - Helping maintain this repo
 
 syphyr
