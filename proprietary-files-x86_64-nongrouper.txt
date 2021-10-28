@@ -1,2 +1,2 @@
--product/priv-app/SetupWizard/SetupWizard.apk;PRESIGNED|ef984a31dfe60c86b7c833835b71f62505582fb3
+-product/priv-app/SetupWizard/SetupWizard.apk;OVERRIDES=Provision;PRESIGNED|ef984a31dfe60c86b7c833835b71f62505582fb3
 -product/priv-app/Velvet/Velvet.apk;PRESIGNED|f42b6c8809feb12f0a435737258bc63feccfd3ce
