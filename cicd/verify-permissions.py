@@ -97,7 +97,7 @@ for apk in glob(GLOB_APK_STR):
     # Output looks like:
     #     package: my.package.name
     package_name = parse('package: {}', lines[0])[0]
-    # Create empty entry if package is not in dic
+    # Create empty entry if package is not in dict
     if package_name not in privapp_permissions_dict:
         privapp_permissions_dict[package_name] = (set(), set())
     # Extract 'uses-permission' lines from the rest of the output
