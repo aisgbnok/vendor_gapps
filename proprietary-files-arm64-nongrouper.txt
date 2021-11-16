@@ -1,6 +1,7 @@
 -product/app/GoogleTTS/GoogleTTS.apk;PRESIGNED|89f25ee81c8bd93b8a788fa2b4a7c56d8ecfad92
 -product/app/MarkupGoogle/MarkupGoogle.apk;PRESIGNED|012bf4c0622d9d0aa4361a62e7ce07a1eb056b8f
 -product/app/talkback/talkback.apk;PRESIGNED|3919b84d1975ee664289beb8a0d683fa312ed5a0
--product/priv-app/SetupWizard/SetupWizard.apk;OVERRIDES=Provision;PRESIGNED|691e4c76521fa0e47005c37d0b70094a74a855f3
 -product/priv-app/Velvet/Velvet.apk;PRESIGNED|2afe5f811617cd293d24478f8702b6ab4b99251c
 product/app/MarkupGoogle/lib/arm64/libsketchology_native.so|5c55b4d32beeeca04b4e9f4ce1a2cd3e15a32c8c
+
+-system_ext/priv-app/SetupWizard/SetupWizard.apk;OVERRIDES=Provision;PRESIGNED|691e4c76521fa0e47005c37d0b70094a74a855f3

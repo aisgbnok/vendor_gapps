@@ -21,8 +21,8 @@ PRODUCT_PACKAGES += \
     GoogleTTS \
     MarkupGoogle \
     talkback \
-    SetupWizard \
-    Velvet
+    Velvet \
+    SetupWizard
 endif
 
 $(call inherit-product, vendor/gapps/common/common-vendor.mk)

@@ -16,8 +16,8 @@ PRODUCT_PACKAGES += \
 ifeq ($(TARGET_IS_GROUPER),)
 
 PRODUCT_PACKAGES += \
-    SetupWizard \
-    Velvet
+    Velvet \
+    SetupWizard
 endif
 
 $(call inherit-product, vendor/gapps/common/common-vendor.mk)
