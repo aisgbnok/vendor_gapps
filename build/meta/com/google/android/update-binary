@@ -270,7 +270,7 @@ if [ -n "$SYSTEM_EXT_BLOCK" ]; then
 fi
 
 if [ -e product/priv-app/SetupWizardPrebuilt ] ; then
-  rm -rf /system/system_ext/priv-app/Provision
+  rm -rf "${SYSTEM_OUT}/system_ext/priv-app/Provision"
 fi
 
 cleanup
