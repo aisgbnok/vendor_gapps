@@ -30,6 +30,7 @@ cleanup() {
 
   ui_print "Unmounting partitions"
   umount -l "$SYSTEM_MNT"
+  umount -l /product || true
 }
 
 error_no_space() {
@@ -109,6 +110,7 @@ ui_print "Mounting partitions"
 
 # Ensure system is unmounted so mounting succeeds
 umount /system || umount /mnt/system || true
+umount /product || true
 
 # Find partitions
 DYNAMIC_PARTITIONS=`getprop ro.boot.dynamic_partitions`
@@ -128,6 +130,7 @@ if [ ! -z "$CURRENTSLOT" ]; then
 fi
 
 SYSTEM_BLOCK=$(find_block "system")
+PRODUCT_BLOCK=$(find_block "product")
 
 # Disable rw protection on dynamic partitions
 if [ "$DYNAMIC_PARTITIONS" = "true" ]; then
@@ -144,6 +147,16 @@ ui_print "Could not mount $SYSTEM_MNT! Aborting"
 exit 1
 fi
 SYSTEM_OUT="${SYSTEM_MNT}/system"
+
+if [ -n "$PRODUCT_BLOCK" ]; then
+  mkdir /product || true
+  if mount -o rw "$PRODUCT_BLOCK" /product; then
+    ui_print "/product mounted"
+  else
+    ui_print "Could not mount /product"
+    exit 1
+  fi
+fi
 
 # Compute storage requirements
 SYSTEM_STORAGE=`df $SYSTEM_MNT | tail -1 | tr -s ' ' | cut -d ' ' -f4`
@@ -188,7 +201,7 @@ done
 ui_print "Copying files"
 cp --preserve=a -r ./* "${SYSTEM_OUT}/"
 if [ -e priv-app/SetupWizardPrebuilt ] ; then
-  rm -rf "${SYSTEM_OUT}/priv-app/Provision"
+  rm -rf "${SYSTEM_OUT}/product/priv-app/Provision"
 fi
 
 cleanup
