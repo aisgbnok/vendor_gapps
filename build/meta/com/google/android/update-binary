@@ -122,7 +122,7 @@ if [ "$MEM" -lt "$LOWMEM" ] || [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
   ui_print "Low resource device detected, removing large extras"
   rm -rf app/MarkupGoogle
   rm -rf priv-app/AndroidMigratePrebuilt
-  rm -rf priv-app/SetupWizard
+  rm -rf priv-app/SetupWizardPrebuilt
   rm -rf priv-app/Velvet
   NEEDED_STORAGE=`expr $(du -s . | awk '{ print $1 }') + $STORAGE_BUFFER`
   if [ "$STORAGE" -lt "$NEEDED_STORAGE" ]; then
@@ -160,7 +160,7 @@ done
 
 ui_print "Copying files"
 cp --preserve=a -r ./* "${SYSTEM_OUT}/"
-if [ -e priv-app/SetupWizard ] ; then
+if [ -e priv-app/SetupWizardPrebuilt ] ; then
   rm -rf "${SYSTEM_OUT}/priv-app/Provision"
 fi
 
