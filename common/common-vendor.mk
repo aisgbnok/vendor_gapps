@@ -29,3 +29,6 @@ ifeq ($(TARGET_IS_GROUPER),)
 PRODUCT_PACKAGES += \
     GoogleRestore
 endif
+
+PRODUCT_SOONG_NAMESPACES += vendor/gapps/overlay
+PRODUCT_PACKAGES += GmsOverlay
