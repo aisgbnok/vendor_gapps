@@ -31,4 +31,4 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_SOONG_NAMESPACES += vendor/gapps/overlay
-PRODUCT_PACKAGES += GmsOverlay
+PRODUCT_PACKAGES += GmsOverlay GmsSettingsProviderOverlay
