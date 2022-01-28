@@ -15,6 +15,7 @@ croot 2>/dev/null || cd ../../../
 source build/envsetup.sh
 breakfast gapps_$GARCH
 m installclean
+mkdir -p $OUT   # $OUT may not exist yet, but we need to start creating the log file now
 m $OVERLAYS | tee $OUT/.log
 
 LOC="$(cat $OUT/.log | sed -r -e 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' -e 's/^\[ {0,2}[0-9]{1,3}% [0-9]{1,6}\/[0-9]{1,6}\] +//' \
