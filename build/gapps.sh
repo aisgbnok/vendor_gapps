@@ -9,7 +9,10 @@
 DATE=$(date -u +%Y%m%d_%H%M%S)
 TOP=$(realpath .)
 ANDROIDV=9.0.0
+SDKV=29
 GARCH=$1
+CPUARCH=$GARCH
+[ ! -z "$2" ] && CPUARCH=$2
 OUT=$TOP/out
 BUILD=$TOP/build
 METAINF=$BUILD/meta
@@ -52,6 +55,10 @@ function create() {
     test -d $OUT/$GARCH/system/addon.d || mkdir -p $OUT/$GARCH/system/addon.d
     cp -f addond_head $OUT/$GARCH/system/addon.d
     cp -f addond_tail $OUT/$GARCH/system/addon.d
+    echo "Writing build props..."
+    echo "arch=$CPUARCH" > $OUT/$GARCH/build.prop
+    echo "version=$SDKV" >> $OUT/$GARCH/build.prop
+    echo "version_nice=$ANDROIDV" >> $OUT/$GARCH/build.prop
 }
 
 function zipit() {

@@ -21,6 +21,24 @@ ui_print() {
   echo "ui_print" > "$OUTFD";
 }
 
+getprop2() {
+  grep -m 1 "^$2=" $1 | cut -d= -f2
+}
+
+nice_arch() {
+  case $1 in
+    aarch64*|armv8*)
+      echo "arm64"
+      ;;
+    arm*)
+      echo "arm"
+      ;;
+    *)
+      echo $1
+      ;;
+  esac
+}
+
 cleanup() {
   ui_print "Cleaning up files"
   rm -rf $TMP/system
@@ -101,6 +119,15 @@ cd "$TMP"
 unzip -o "$ZIP"
 rm -rf META-INF
 
+# Check for arch. We need to do this before extracting our toybox, since that might be
+# compiled for a different architecture. Just hope that all environments have at least
+# a proper `grep` and `uname`.
+GAPPS_ARCH=$(getprop2 $TMP/build.prop arch)
+CPU_ARCH=$(uname -m)
+if [ $GAPPS_ARCH != $CPU_ARCH ]; then
+  error "This package is built for $(nice_arch $GAPPS_ARCH) but your device is $(nice_arch $CPU_ARCH)! Aborting"
+fi
+
 ui_print "Setting up environment"
 TOYBOX="${TMP}/toybox"
 chmod +x "$TOYBOX"
@@ -153,6 +180,15 @@ else
 error_mounting "$SYSTEM_MNT"
 fi
 SYSTEM_OUT="${SYSTEM_MNT}/system"
+
+# Compare sdk version
+GAPPS_VERSION=$(getprop2 $TMP/build.prop version)
+ANDROID_VERSION=$(getprop2 $SYSTEM_OUT/build.prop ro.build.version.sdk)
+if [ "$GAPPS_VERSION" != "$ANDROID_VERSION" ]; then
+  gapps_version_nice=$(getprop2 $TMP/build.prop version_nice)
+  android_version_nice=$(getprop2 $SYSTEM_OUT/build.prop ro.build.version.release)
+  error "This package is for Android $gapps_version_nice (SDK $GAPPS_VERSION) but your system is Android $android_version_nice (SDK $ANDROID_VERSION)! Aborting"
+fi
 
 # Ignore product block device in case it's a symlink
 # This is common on devices where maintainers have chosen not to use
