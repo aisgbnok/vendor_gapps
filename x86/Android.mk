@@ -1,4 +1,4 @@
-# Copyright (C) 2017-2019 The LineageOS Project
+# Copyright (C) 2017-2022 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,30 +18,4 @@ LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter x86,$(TARGET_ARCH)),)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE := PrebuiltGmsCore
-LOCAL_MODULE_OWNER := gapps
-LOCAL_SRC_FILES := proprietary/priv-app/PrebuiltGmsCore/PrebuiltGmsCore.apk
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := APPS
-LOCAL_DEX_PREOPT := false
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_PRIVILEGED_MODULE := true
-include $(BUILD_PREBUILT)
-
-ifeq ($(TARGET_IS_GROUPER),)
-include $(CLEAR_VARS)
-LOCAL_MODULE := Velvet
-LOCAL_MODULE_OWNER := gapps
-LOCAL_SRC_FILES := proprietary/priv-app/Velvet/Velvet.apk
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := APPS
-LOCAL_DEX_PREOPT := false
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_PRIVILEGED_MODULE := true
-include $(BUILD_PREBUILT)
-
-endif
 endif
