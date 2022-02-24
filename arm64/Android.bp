@@ -41,6 +41,18 @@ android_app_import {
 }
 
 android_app_import {
+	name: "SetupWizardPrebuilt",
+	owner: "gapps",
+	apk: "proprietary/priv-app/SetupWizardPrebuilt/SetupWizardPrebuilt.apk",
+	overrides: ["Provision"],
+	presigned: true,
+	dex_preopt: {
+		enabled: false,
+	},
+	privileged: true,
+}
+
+android_app_import {
 	name: "Velvet",
 	owner: "gapps",
 	apk: "proprietary/priv-app/Velvet/Velvet.apk",
