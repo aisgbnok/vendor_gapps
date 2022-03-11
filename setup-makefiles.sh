@@ -20,7 +20,7 @@ set -e
 
 export INITIAL_COPYRIGHT_YEAR=2017
 
-export GAPPS_COMMON=common
+export DEVICE_COMMON=common
 export VENDOR=gapps
 
 # Load extract_utils and do some sanity checks
@@ -37,7 +37,7 @@ fi
 . "$HELPER"
 
 # Initialize the helper for common gapps
-setup_vendor "$GAPPS_COMMON" "$VENDOR" "$LINEAGE_ROOT" true
+setup_vendor "$DEVICE_COMMON" "$VENDOR" "$LINEAGE_ROOT" true
 
 # Copyright headers
 write_headers "arm arm64 x86"
@@ -55,19 +55,19 @@ sed -i 's/TARGET_DEVICE/TARGET_ARCH/g' "$ANDROIDMK"
 # We are done with common
 write_footers
 
-for TARGET in arm arm64 x86; do
+for DEVICE in arm arm64 x86; do
 
 # Reinitialize the helper for target gapps
-setup_vendor "$TARGET" "$VENDOR" "$LINEAGE_ROOT" true
+setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT"
 
 # Copyright headers and guards
-write_headers "$TARGET"
+write_headers "$DEVICE"
 
-write_makefiles "$MY_DIR"/proprietary-files-$TARGET.txt
+write_makefiles "$MY_DIR"/proprietary-files-$DEVICE.txt
 
 # Gapps that are too large for grouper
 echo "ifeq (\$(TARGET_IS_GROUPER),)" >> "$PRODUCTMK"
-write_makefiles "$MY_DIR"/proprietary-files-$TARGET-nongrouper.txt
+write_makefiles "$MY_DIR"/proprietary-files-$DEVICE-nongrouper.txt
 echo "endif" >> "$PRODUCTMK"
 
 printf '\n%s\n' "\$(call inherit-product, vendor/gapps/common/common-vendor.mk)" >> "$PRODUCTMK"
