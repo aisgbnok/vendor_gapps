@@ -30,9 +30,9 @@ android_app_import {
 }
 
 android_app_import {
-	name: "GoogleTTS",
+	name: "MarkupGoogle",
 	owner: "gapps",
-	apk: "proprietary/product/app/GoogleTTS/GoogleTTS.apk",
+	apk: "proprietary/product/app/MarkupGoogle/MarkupGoogle.apk",
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -41,9 +41,9 @@ android_app_import {
 }
 
 android_app_import {
-	name: "MarkupGoogle",
+	name: "SpeechServicesByGoogle",
 	owner: "gapps",
-	apk: "proprietary/product/app/MarkupGoogle/MarkupGoogle.apk",
+	apk: "proprietary/product/app/SpeechServicesByGoogle/SpeechServicesByGoogle.apk",
 	presigned: true,
 	dex_preopt: {
 		enabled: false,

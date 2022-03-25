@@ -10,8 +10,10 @@
 product/etc/permissions/com.google.android.dialer.support.xml
 product/etc/permissions/privapp-permissions-google-product.xml
 
+product/etc/security/fsverity/gms_fsverity_cert.der
+
 product/etc/sysconfig/d2d_cable_migration_feature.xml
-product/etc/sysconfig/google-hiddenapi-package-allowlist.xml
+system/etc/sysconfig/google-hiddenapi-package-allowlist.xml:product/etc/sysconfig/google-hiddenapi-package-allowlist.xml
 product/etc/sysconfig/google.xml
 product/etc/sysconfig/google_build.xml|2547949ac40c1e921ae6e92de6a36f2a3a70802c
 

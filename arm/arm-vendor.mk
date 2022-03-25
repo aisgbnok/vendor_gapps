@@ -17,8 +17,8 @@ PRODUCT_COPY_FILES += \
     vendor/gapps/arm/proprietary/product/app/MarkupGoogle/lib/arm/libsketchology_native.so:$(TARGET_COPY_OUT_PRODUCT)/app/MarkupGoogle/lib/arm/libsketchology_native.so
 
 PRODUCT_PACKAGES += \
-    GoogleTTS \
     MarkupGoogle \
+    SpeechServicesByGoogle \
     talkback \
     Velvet \
     SetupWizard

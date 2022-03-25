@@ -40,14 +40,11 @@
     <app-link package="com.google.android.apps.maps" />
     <app-link package="com.google.android.youtube" />
     <app-link package="com.google.android.apps.docs" />
-    <app-link package="com.google.android.talk" />
     <app-link package="com.google.android.apps.photos" />
     <app-link package="com.google.android.apps.youtube.music" />
     <app-link package="com.google.android.googlequicksearchbox" />
 
     <!-- Apps below are optional on GMS devices -->
-    <app-link package="com.google.android.apps.tycho" />
-    <app-link package="com.google.android.apps.plus" />
     <app-link package="com.google.android.apps.docs.editors.sheets" />
     <app-link package="com.google.android.apps.docs.editors.slides" />
     <app-link package="com.google.android.apps.docs.editors.docs" />
@@ -55,17 +52,6 @@
     <app-link package="com.google.android.videos" />
     <app-link package="com.google.android.calendar" />
     <app-link package="com.google.android.apps.wallpaper" />
-
-    <!-- These are the packages that are white-listed to be able to run as system user -->
-    <system-user-whitelisted-app package="com.android.vending" />
-    <system-user-whitelisted-app package="com.google.android.gms" />
-    <system-user-whitelisted-app package="com.google.android.gms.policy_auth" />
-    <system-user-whitelisted-app package="com.google.android.play.games" />
-    <system-user-whitelisted-app package="com.google.android.tts" />
-
-    <!-- These are the packages that are uninstalled for system user -->
-    <!-- Apps below are required on all GMS devices -->
-    <system-user-blacklisted-app package="com.google.android.googlequicksearchbox" />
 
     <!-- Whitelist of what components are permitted as backup data transports.  The
          'service' attribute here is a flattened ComponentName string. -->

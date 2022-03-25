@@ -1,3 +1,3 @@
--product/priv-app/Velvet/Velvet.apk;PRESIGNED|131f57f1c772e1c08078e161e6ba5a7f79ed022f
+-product/priv-app/Velvet/Velvet.apk;PRESIGNED
 
--system_ext/priv-app/SetupWizard/SetupWizard.apk;OVERRIDES=Provision;PRESIGNED|cae5849fdd55cf7ef4a7fde1a180ab8fb2cf8dfd
+-system_ext/priv-app/SetupWizard/SetupWizard.apk;OVERRIDES=Provision;PRESIGNED
