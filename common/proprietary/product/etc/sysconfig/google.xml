@@ -66,4 +66,15 @@
 
     <!-- Whitelist of packages that eligible for rollback -->
     <rollback-whitelisted-app package="com.android.vending" />
+
+    <!-- Restrict ASI and Private Compute Services -->
+    <allow-association target="com.google.android.as" allowed="com.android.bluetooth" />
+    <allow-association target="com.google.android.as" allowed="com.android.providers.contacts" />
+    <allow-association target="com.google.android.as" allowed="com.android.providers.media" />
+    <allow-association target="com.google.android.as" allowed="com.android.providers.telephony" />
+    <allow-association target="com.google.android.as" allowed="com.android.systemui" />
+    <allow-association target="com.google.android.as" allowed="com.google.android.providers.media.module" />
+    <allow-association target="com.google.android.as" allowed="com.google.android.as.oss" />
+    <allow-association target="com.google.android.as" allowed="com.google.android.bluetooth.services" />
+    <allow-association target="com.google.android.as.oss" allowed="com.google.android.as" />
 </config>

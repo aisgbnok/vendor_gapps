@@ -4,9 +4,17 @@ This XML file declares which signature|privileged permissions should be granted 
 privileged Google applications in GMS devices.
 -->
 <permissions>
+    <privapp-permissions package="com.android.emergency">
+        <permission name="android.permission.CALL_PRIVILEGED"/>
+        <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+        <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    </privapp-permissions>
+
     <privapp-permissions package="com.google.android.feedback">
-        <permission name="android.permission.READ_LOGS"/>
         <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+        <permission name="android.permission.READ_LOGS"/>
+        <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.google.android.gsf">
@@ -55,6 +63,7 @@ privileged Google applications in GMS devices.
         <permission name="android.permission.OVERRIDE_WIFI_CONFIG"/>
         <permission name="android.permission.PERFORM_CDMA_PROVISIONING"/>
         <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+        <permission name="android.permission.READ_WIFI_CREDENTIAL"/>
         <permission name="android.permission.REBOOT"/>
         <permission name="android.permission.REQUEST_NETWORK_SCORES"/>
         <permission name="android.permission.SET_TIME"/>
