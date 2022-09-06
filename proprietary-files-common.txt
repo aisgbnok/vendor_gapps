@@ -7,7 +7,8 @@
 
 -product/framework/com.google.android.dialer.support.jar;PRESIGNED
 
-product/etc/default-permissions/default-permissions-google.xml|9f3f615d1c46b63207c9374db018e78fe02aaafb
+product/etc/default-permissions/default-permissions-google.xml
+product/etc/default-permissions/default-permissions-mtg.xml|b0e11fec4c6d134e205a856733bc89d95f2f24c9
 
 product/etc/permissions/com.google.android.dialer.support.xml
 product/etc/permissions/privapp-permissions-google-product.xml
