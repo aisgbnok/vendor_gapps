@@ -24,8 +24,8 @@ _make gapps_x86_64_
 
 Build inline with Android
 -------------------
-1. Sync this repo to $GAPPS_PATH where $GAPPS_PATH is the path to this repo
-2. Include $GAPPS_PATH/$ARCH/$ARCH-vendor.mk where $ARCH is arm, arm64, x86, or x86_64 depending on the device's architecture
+1. Sync this repo to `$GAPPS_PATH` where `$GAPPS_PATH` is the path to this repo
+2. Include `$GAPPS_PATH/$ARCH/$ARCH-vendor.mk` where `$ARCH` is arm, arm64, x86, or x86_64 depending on the device's architecture
 
 Explanation of pinned blobs
 -------------------
