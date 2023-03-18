@@ -14,9 +14,6 @@ PRODUCT_PACKAGES += \
     Phonesky
 
 ifeq ($(TARGET_IS_GROUPER),)
-PRODUCT_COPY_FILES += \
-    vendor/gapps/arm64/proprietary/product/app/MarkupGoogle/lib/arm64/libsketchology_native.so:$(TARGET_COPY_OUT_PRODUCT)/app/MarkupGoogle/lib/arm64/libsketchology_native.so
-
 PRODUCT_PACKAGES += \
     MarkupGoogle \
     SpeechServicesByGoogle \
