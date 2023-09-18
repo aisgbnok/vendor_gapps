@@ -13,6 +13,7 @@ PRODUCT_PACKAGES += \
     Phonesky
 
 ifeq ($(TARGET_IS_GROUPER),)
+
 PRODUCT_PACKAGES += \
     SpeechServicesByGoogle \
     talkback \
