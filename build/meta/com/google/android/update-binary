@@ -111,6 +111,7 @@ remove_big_optional_apps() {
   rm -rf product/app/talkback
   rm -rf product/priv-app/GoogleRestore
   rm -rf product/priv-app/Velvet
+  rm -rf product/priv-app/VelvetTitan
   rm -rf system_ext/priv-app/SetupWizard
 }
 
