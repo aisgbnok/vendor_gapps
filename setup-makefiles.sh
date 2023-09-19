@@ -79,6 +79,15 @@ echo "ifeq (\$(TARGET_IS_GROUPER),)" >> "$PRODUCTMK"
 write_makefiles "$MY_DIR"/proprietary-files-$DEVICE-nongrouper.txt
 echo "endif" >> "$PRODUCTMK"
 
+# Workaround for VelvetTitan on tangorpro
+if grep -q "VelvetTitan" "$PRODUCTMK"; then
+    sed -i '/VelvetTitan/d' "$PRODUCTMK"
+    printf "\n" >> "$PRODUCTMK"
+    echo "ifneq (\$(filter %tangorpro,\$(TARGET_PRODUCT)),)" >> "$PRODUCTMK"
+    echo "PRODUCT_PACKAGES += VelvetTitan" >> "$PRODUCTMK"
+    echo "endif" >> "$PRODUCTMK"
+fi
+
 printf '\n%s\n' "\$(call inherit-product, vendor/gapps/common/common-vendor.mk)" >> "$PRODUCTMK"
 
 sed -i 's/TARGET_DEVICE/TARGET_ARCH/g' "$ANDROIDMK"
