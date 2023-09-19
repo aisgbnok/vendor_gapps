@@ -129,9 +129,9 @@ rm -rf META-INF
 DEVICE=$(getprop ro.build.product)
 if [ "$DEVICE" == "tangorpro" ]; then
   ui_print "Detected tangorpro device. Deleting normal Velvet app"
-  rm -Rf $TMP/product/priv-app/Velvet
+  rm -rf $TMP/product/priv-app/Velvet
 else
-  rm -Rf $TMP/product/priv-app/VelvetTitan
+  rm -rf $TMP/product/priv-app/VelvetTitan
 fi
 
 
