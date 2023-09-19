@@ -5,24 +5,23 @@ set -e
 GARCH=$1
 GOUT=$2
 
+APKTOOL=$GAPPS_TOP/build/apktool/apktool_2.8.1.jar
+APKSIGNER=$GAPPS_TOP/build/sign/apksigner.jar
+
+APK_KEY_PK8=$GAPPS_TOP/build/sign/testkey.pk8
+APK_KEY_PEM=$GAPPS_TOP/build/sign/testkey.x509.pem
+
 SCRIPT_DIR=$(dirname "$0")
 cd "$SCRIPT_DIR"
 
 OVERLAYS=$(for dir in $(ls -d */); do echo ${dir%%/}; done)
 
-croot 2>/dev/null || cd ../../../
-
-source build/envsetup.sh
-breakfast gapps_$GARCH
-m installclean
-mkdir -p $OUT   # $OUT may not exist yet, but we need to start creating the log file now
-m $OVERLAYS | tee $OUT/.log
-
-RELOUT=$(echo $OUT | sed "s#^${ANDROID_BUILD_TOP}/##")
-LOC="$(cat $OUT/.log | sed -r -e 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' -e 's/^\[ {0,2}[0-9]{1,3}% [0-9]{1,6}\/[0-9]{1,6}\] +//' \
-            | grep '^Install: ' | grep "$RELOUT" | cut -d ':' -f 2)"
-FILES=$(echo $LOC | tr " " "\n" | sed "s#.*${RELOUT}##" | sort | uniq)
-
-for TARGET in $FILES; do
-    mkdir -p $(dirname $GOUT/$TARGET) && cp $OUT/$TARGET $GOUT/$TARGET
+for OVERLAY in $OVERLAYS; do
+    PARTITION=$(grep -Eo "\w+_specific: true" $OVERLAY/Android.bp | sed "s/_specific.*$//")
+    OVERLAY_TARGET_DIR="$GOUT/system/$PARTITION/overlay/"
+    OVERLAY_TARGET="$OVERLAY_TARGET_DIR/$OVERLAY.apk"
+    test -d $OVERLAY_TARGET_DIR || mkdir -p $OVERLAY_TARGET_DIR
+    java -Xmx2048m -jar $APKTOOL b $OVERLAY -o $OVERLAY_TARGET --use-aapt2 >> $GLOG 2>&1
+    java -Xmx2048m -jar $APKSIGNER sign --key $APK_KEY_PK8 --cert $APK_KEY_PEM $OVERLAY_TARGET
+    rm $OVERLAY_TARGET.idsig
 done
