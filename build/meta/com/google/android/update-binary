@@ -125,16 +125,6 @@ cd "$TMP"
 unzip -o "$ZIP"
 rm -rf META-INF
 
-# Detect tangorpro
-DEVICE=$(getprop ro.build.product)
-if [ "$DEVICE" == "tangorpro" ]; then
-  ui_print "Detected tangorpro device. Deleting normal Velvet app"
-  rm -rf $TMP/product/priv-app/Velvet
-else
-  rm -rf $TMP/product/priv-app/VelvetTitan
-fi
-
-
 # Check for arch. We need to do this before extracting our toybox, since that might be
 # compiled for a different architecture. Just hope that all environments have at least
 # a proper `grep` and `uname`.
@@ -252,6 +242,16 @@ fi
 STORAGE_BUFFER=10240
 
 cd system
+
+# Detect tangorpro
+DEVICE=$(getprop ro.build.product)
+if [ "$DEVICE" == "tangorpro" ]; then
+  ui_print "Detected tangorpro device. Deleting normal Velvet app"
+  rm -rf product/priv-app/Velvet
+else
+  rm -rf product/priv-app/VelvetTitan
+fi
+
 compute_apps_size
 
 if [ "$SYSTEM_STORAGE" -lt "$NEEDED_STORAGE_SYSTEM" ]; then
