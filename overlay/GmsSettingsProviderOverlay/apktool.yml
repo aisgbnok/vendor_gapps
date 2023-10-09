@@ -8,8 +8,8 @@ packageInfo:
   renameManifestPackage: null
 resourcesAreCompressed: false
 sdkInfo:
-  minSdkVersion: '33'
-  targetSdkVersion: '33'
+  minSdkVersion: '34'
+  targetSdkVersion: '34'
 sharedLibrary: false
 sparseResources: true
 unknownFiles: {}
