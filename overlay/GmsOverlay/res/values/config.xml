@@ -57,6 +57,9 @@
         <item>com.google.android.gms</item>
     </string-array>
 
+    <!-- The name of the package that will hold the assistant role by default. -->
+    <string name="config_defaultAssistant" translatable="false">com.google.android.googlequicksearchbox</string>
+
     <!-- Component name that accepts settings intents for saved devices.
          Used by FastPairSettingsFragment. -->
     <string translatable="false" name="config_defaultNearbyFastPairSettingsDevicesComponent">com.google.android.gms/com.google.android.gms.nearby.discovery.devices.SavedDevicesSettingsActivity</string>
