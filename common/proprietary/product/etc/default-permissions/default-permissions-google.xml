@@ -12,7 +12,8 @@
     <!-- For D2D Restore -->
     <permission name="android.permission.READ_CALL_LOG" fixed="false"/>
     <permission name="android.permission.WRITE_CALL_LOG" fixed="false"/>
-    <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false"/>
+    <permission name="android.permission.NEARBY_WIFI_DEVICES" fixed="false"/>
+    <permission name="android.permission.POST_NOTIFICATIONS" fixed="false"/>
   </exception>
 
   <exception

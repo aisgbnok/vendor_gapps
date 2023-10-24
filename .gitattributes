@@ -1,0 +1,5 @@
+arm/proprietary/product/priv-app/GmsCore/GmsCore.apk filter=lfs diff=lfs merge=lfs -text
+arm64/proprietary/product/priv-app/Velvet/Velvet.apk filter=lfs diff=lfs merge=lfs -text
+arm64/proprietary/product/priv-app/VelvetTitan/VelvetTitan.apk filter=lfs diff=lfs merge=lfs -text
+arm/proprietary/product/priv-app/Velvet/Velvet.apk filter=lfs diff=lfs merge=lfs -text
+arm64/proprietary/product/priv-app/GmsCore/GmsCore.apk filter=lfs diff=lfs merge=lfs -text

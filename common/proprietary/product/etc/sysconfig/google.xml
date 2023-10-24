@@ -11,6 +11,9 @@
     <allow-ignore-location-settings package="com.google.android.gms" attributionTag="com.google.android.gms.thunderbird" />
     <allow-ignore-location-settings package="com.google.android.dialer" attributionTag="*" />
 
+    <!-- Allow App Streaming to run in background while in power save mode. -->
+    <allow-in-power-save package="com.google.ambient.streaming" />
+
     <!-- Turbo must not have App Standby restrictions in order to push new
          App Standby buckets to the platform periodically -->
     <allow-in-power-save-except-idle package="com.google.android.apps.turbo" />
@@ -27,10 +30,9 @@
     <!-- Play Store likewise must have network access to support other applications. -->
     <allow-in-power-save-except-idle package="com.android.vending" />
 
-    <!-- If CarrierServices is installed, it must always have network access to
-         reliably receive IMS messages. -->
-    <allow-in-power-save package="com.google.android.ims" />
-    <allow-in-data-usage-save package="com.google.android.ims" />
+    <!-- Allow SetupWizard keeping at unrestricted mode of Battery usage. -->
+    <bg-restriction-exemption package="com.google.android.setupwizard"/>
+    <bg-restriction-exemption package="com.google.android.apps.setupwizard.searchselector"/>
 
     <!-- These Google applications all handle URLs to their websites by default -->
 
@@ -59,6 +61,28 @@
         service="com.google.android.gms/.backup.BackupTransportService" />
     <backup-transport-whitelisted-service
         service="com.google.android.gms/.backup.component.D2dTransportService" />
+    <backup-transport-whitelisted-service
+        service="com.google.android.apps.restore/.transport.BackupTransportService" />
+    <backup-transport-whitelisted-service
+        service="com.google.android.apps.restore/.transport.D2dTransportService" />
+
+    <!-- Specify the explicit set of other applications that AI services are allowed to
+         interact with, including the providers that back the implementation of the APIs
+         provided by the package. -->
+    <allow-association target="com.google.android.as" allowed="com.android.bluetooth" />
+    <allow-association target="com.google.android.as" allowed="com.android.bluetooth.services" />
+    <allow-association target="com.google.android.as" allowed="com.android.providers.contacts" />
+    <allow-association target="com.google.android.as" allowed="com.android.providers.media" />
+    <allow-association target="com.google.android.as" allowed="com.android.providers.telephony" />
+    <allow-association target="com.google.android.as" allowed="com.android.systemui" />
+    <allow-association target="com.google.android.as" allowed="com.google.android.bluetooth" />
+    <allow-association target="com.google.android.as" allowed="com.google.android.bluetooth.services" />
+    <allow-association target="com.google.android.as" allowed="com.google.android.providers.media.module" />
+    <!-- AI services can bind to its open-source network component. -->
+    <allow-association target="com.google.android.as" allowed="com.google.android.as.oss" />
+
+    <!-- AI services open-source network component can only bind back to the core package. -->
+    <allow-association target="com.google.android.as.oss" allowed="com.google.android.as" />
 
     <!-- Specify the explicit set of other applications whose app data directories are
         accessible by other applications. -->
@@ -67,14 +91,9 @@
     <!-- Whitelist of packages that eligible for rollback -->
     <rollback-whitelisted-app package="com.android.vending" />
 
-    <!-- Restrict ASI and Private Compute Services -->
-    <allow-association target="com.google.android.as" allowed="com.android.bluetooth" />
-    <allow-association target="com.google.android.as" allowed="com.android.providers.contacts" />
-    <allow-association target="com.google.android.as" allowed="com.android.providers.media" />
-    <allow-association target="com.google.android.as" allowed="com.android.providers.telephony" />
-    <allow-association target="com.google.android.as" allowed="com.android.systemui" />
-    <allow-association target="com.google.android.as" allowed="com.google.android.providers.media.module" />
-    <allow-association target="com.google.android.as" allowed="com.google.android.as.oss" />
-    <allow-association target="com.google.android.as" allowed="com.google.android.bluetooth.services" />
-    <allow-association target="com.google.android.as.oss" allowed="com.google.android.as" />
+    <!-- Specify the installer eligiable for updating the given GMS package. -->
+    <update-ownership package="com.google.android.gms" installer="com.android.vending" />
+
+    <!-- Denylist of packages that are not eligible for automatic rollback -->
+    <automatic-rollback-denylisted-app package="com.android.vending" />
 </config>

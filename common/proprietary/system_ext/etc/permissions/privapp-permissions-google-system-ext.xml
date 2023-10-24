@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-This XML file declares which signature|privileged permissions should be granted to
-privileged Google applications in GMS devices.
+This XML file declares which signature|privileged permissions should be granted to privileged
+applications in /system_ext on GMS or Google-branded devices.
+It allows additional grants on top of privapp-permissions-platform.xml
 -->
 <permissions>
     <privapp-permissions package="com.android.emergency">
@@ -9,12 +10,6 @@ privileged Google applications in GMS devices.
         <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
         <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
-    </privapp-permissions>
-
-    <privapp-permissions package="com.google.android.feedback">
-        <permission name="android.permission.PACKAGE_USAGE_STATS"/>
-        <permission name="android.permission.READ_LOGS"/>
-        <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.google.android.gsf">
@@ -27,7 +22,6 @@ privileged Google applications in GMS devices.
         <permission name="android.permission.MANAGE_USERS"/>
         <permission name="android.permission.MASTER_CLEAR"/>
         <permission name="android.permission.READ_DREAM_STATE"/>
-        <permission name="android.permission.READ_LOGS"/>
         <permission name="android.permission.READ_NETWORK_USAGE_HISTORY"/>
         <permission name="android.permission.REBOOT"/>
         <permission name="android.permission.RECEIVE_DATA_ACTIVITY_CHANGE"/>
@@ -39,8 +33,10 @@ privileged Google applications in GMS devices.
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
     </privapp-permissions>
 
-    <privapp-permissions package="com.google.android.onetimeinitializer">
-        <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
+    <privapp-permissions package="com.google.android.feedback">
+        <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+        <permission name="android.permission.READ_LOGS"/>
+        <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.google.android.setupwizard">
@@ -52,9 +48,11 @@ privileged Google applications in GMS devices.
         <permission name="android.permission.INTERACT_ACROSS_USERS"/>
         <permission name="android.permission.INVOKE_CARRIER_SETUP"/>
         <permission name="android.permission.LOCAL_MAC_ADDRESS"/>
+        <permission name="android.permission.LOCATION_HARDWARE"/>
         <permission name="android.permission.MANAGE_DEVICE_ADMINS"/>
         <permission name="android.permission.MANAGE_FINGERPRINT"/>
         <permission name="android.permission.MANAGE_USB"/>
+        <permission name="android.permission.MANAGE_TIME_AND_ZONE_DETECTION"/>
         <permission name="android.permission.MANAGE_USERS"/>
         <permission name="android.permission.MASTER_CLEAR"/>
         <permission name="android.permission.MODIFY_DAY_NIGHT_MODE"/>
