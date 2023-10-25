@@ -22,6 +22,9 @@ for OVERLAY in $OVERLAYS; do
     OVERLAY_TARGET="$OVERLAY_TARGET_DIR/$OVERLAY.apk"
     test -d $OVERLAY_TARGET_DIR || mkdir -p $OVERLAY_TARGET_DIR
     java -Xmx2048m -jar $APKTOOL b $OVERLAY --use-aapt2 >> $GLOG 2>&1
+    touch -amt 200901010000.00 \
+        $OVERLAY/build/apk/resources.arsc \
+        $OVERLAY/build/apk/AndroidManifest.xml
     zip -j $OVERLAY_TARGET -n .arsc \
         $OVERLAY/build/apk/resources.arsc \
         $OVERLAY/build/apk/AndroidManifest.xml >> $GLOG 2>&1
