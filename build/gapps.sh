@@ -21,6 +21,7 @@ export GLOG=$GAPPS_TOP/gapps_log
 ADDOND=$GAPPS_TOP/addond.sh
 
 SIGNAPK=$GAPPS_TOP/build/sign/signapk.jar
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GAPPS_TOP/build/sign
 
 ZIP_KEY_PK8=$GAPPS_TOP/build/sign/testkey.pk8
 ZIP_KEY_PEM=$GAPPS_TOP/build/sign/testkey.x509.pem
