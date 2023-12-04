@@ -108,6 +108,7 @@ remove_big_optional_apps() {
   ui_print "Low resource device detected, removing large extras"
   rm -rf product/app/GoogleTTS
   rm -rf product/app/MarkupGoogle
+  rm -rf product/app/SpeechServicesByGoogle
   rm -rf product/app/talkback
   rm -rf product/priv-app/GoogleRestore
   rm -rf product/priv-app/Velvet
