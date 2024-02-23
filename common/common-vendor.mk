@@ -31,7 +31,8 @@ PRODUCT_PACKAGES += \
 ifeq ($(TARGET_IS_GROUPER),)
 
 PRODUCT_PACKAGES += \
-    GoogleRestore
+    GoogleRestore \
+    Wellbeing
 endif
 
 PRODUCT_SOONG_NAMESPACES += vendor/gapps/overlay
