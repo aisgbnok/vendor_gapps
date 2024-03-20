@@ -12,6 +12,7 @@ android_app_import {
 	name: "GmsCore",
 	owner: "gapps",
 	apk: "proprietary/product/priv-app/GmsCore/GmsCore.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -24,6 +25,7 @@ android_app_import {
 	name: "Phonesky",
 	owner: "gapps",
 	apk: "proprietary/product/priv-app/Phonesky/Phonesky.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -36,6 +38,7 @@ android_app_import {
 	name: "Velvet",
 	owner: "gapps",
 	apk: "proprietary/product/priv-app/Velvet/Velvet.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -49,6 +52,7 @@ android_app_import {
 	owner: "gapps",
 	apk: "proprietary/system_ext/priv-app/SetupWizard/SetupWizard.apk",
 	overrides: ["Provision"],
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,

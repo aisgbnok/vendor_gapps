@@ -11,6 +11,7 @@ android_app_import {
 	name: "GoogleCalendarSyncAdapter",
 	owner: "gapps",
 	apk: "proprietary/product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -22,6 +23,7 @@ android_app_import {
 	name: "GoogleContactsSyncAdapter",
 	owner: "gapps",
 	apk: "proprietary/product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -33,6 +35,7 @@ android_app_import {
 	name: "PrebuiltExchange3Google",
 	owner: "gapps",
 	apk: "proprietary/product/app/PrebuiltExchange3Google/PrebuiltExchange3Google.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -44,6 +47,7 @@ android_app_import {
 	name: "AndroidAutoStub",
 	owner: "gapps",
 	apk: "proprietary/product/priv-app/AndroidAutoStub/AndroidAutoStub.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -56,6 +60,7 @@ android_app_import {
 	name: "GooglePartnerSetup",
 	owner: "gapps",
 	apk: "proprietary/product/priv-app/GooglePartnerSetup/GooglePartnerSetup.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -68,6 +73,7 @@ android_app_import {
 	name: "GoogleFeedback",
 	owner: "gapps",
 	apk: "proprietary/system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -80,6 +86,7 @@ android_app_import {
 	name: "GoogleServicesFramework",
 	owner: "gapps",
 	apk: "proprietary/system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -99,6 +106,7 @@ android_app_import {
 	name: "GoogleRestore",
 	owner: "gapps",
 	apk: "proprietary/product/priv-app/GoogleRestore/GoogleRestore.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
@@ -111,6 +119,7 @@ android_app_import {
 	name: "Wellbeing",
 	owner: "gapps",
 	apk: "proprietary/product/priv-app/Wellbeing/Wellbeing.apk",
+	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
 		enabled: false,
