@@ -5,11 +5,9 @@
 PRODUCT_SOONG_NAMESPACES += \
     vendor/gapps/arm64
 
-PRODUCT_COPY_FILES += \
-    vendor/gapps/arm64/proprietary/product/lib/libjni_latinimegoogle.so:$(TARGET_COPY_OUT_PRODUCT)/lib/libjni_latinimegoogle.so \
-    vendor/gapps/arm64/proprietary/product/lib64/libjni_latinimegoogle.so:$(TARGET_COPY_OUT_PRODUCT)/lib64/libjni_latinimegoogle.so
 
 PRODUCT_PACKAGES += \
+    libjni_latinimegoogle \
     GmsCore \
     Phonesky
 
