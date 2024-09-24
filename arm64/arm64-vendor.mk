@@ -14,7 +14,7 @@ PRODUCT_PACKAGES += \
 ifeq ($(TARGET_IS_GROUPER),)
 
 PRODUCT_PACKAGES += \
-    MarkupGoogle \
+    MarkupGoogle_v2 \
     SpeechServicesByGoogle \
     talkback \
     Velvet \

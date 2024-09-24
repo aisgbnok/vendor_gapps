@@ -1,7 +1,7 @@
-product/app/MarkupGoogle/MarkupGoogle.apk;PRESIGNED|ed68878a8a06ca8c06dbc98441a657168f1b378b
+product/app/MarkupGoogle_v2/MarkupGoogle_v2.apk;PRESIGNED|474ca0e1fb0e6340b647142b3f493055fcb3990f
 product/app/SpeechServicesByGoogle/SpeechServicesByGoogle.apk;PRESIGNED
 product/app/talkback/talkback.apk;PRESIGNED
 product/priv-app/Velvet/Velvet.apk;PRESIGNED
-product/priv-app/VelvetTitan/VelvetTitan.apk;OVERRIDES=Velvet;PRESIGNED|0251d61f74f0557ccfd0e0424bed31e5828ea4b5
+product/priv-app/VelvetTitan/VelvetTitan.apk;OVERRIDES=Velvet;PRESIGNED|bb7c2f3fadfee4dda509daba285fec3dfffeed7e
 
 system_ext/priv-app/SetupWizard/SetupWizard.apk;OVERRIDES=Provision;PRESIGNED

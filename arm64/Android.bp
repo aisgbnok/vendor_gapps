@@ -56,9 +56,9 @@ android_app_import {
 }
 
 android_app_import {
-	name: "MarkupGoogle",
+	name: "MarkupGoogle_v2",
 	owner: "gapps",
-	apk: "proprietary/product/app/MarkupGoogle/MarkupGoogle.apk",
+	apk: "proprietary/product/app/MarkupGoogle_v2/MarkupGoogle_v2.apk",
 	preprocessed: true,
 	presigned: true,
 	dex_preopt: {
