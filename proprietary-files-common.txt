@@ -14,6 +14,7 @@ product/etc/init/gapps.rc|1b9e076965fe08a03cf90fed0e96f2aa4ac90c0e
 
 product/etc/permissions/com.google.android.dialer.support.xml
 product/etc/permissions/privapp-permissions-google-product.xml
+product/etc/permissions/privapp-permissions-mtg.xml|926d8fbcfbf4711a4bc96777595b70b874ef7334
 
 product/etc/security/fsverity/gms_fsverity_cert.der
 
