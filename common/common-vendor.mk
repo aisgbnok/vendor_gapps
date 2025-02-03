@@ -30,6 +30,8 @@ PRODUCT_PACKAGES += \
     com.google.android.dialer.support
 
 ifeq ($(TARGET_IS_GROUPER),)
+PRODUCT_COPY_FILES += \
+    vendor/gapps/common/proprietary/product/etc/sysconfig/wellbeing.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/wellbeing.xml
 
 PRODUCT_PACKAGES += \
     GoogleRestore \
